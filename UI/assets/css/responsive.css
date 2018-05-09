@@ -1,0 +1,10 @@
+@media only screen and (max-width: 800px) {
+    .features {
+        flex-direction: column;
+    }
+
+    .feature {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
