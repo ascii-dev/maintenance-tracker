@@ -40,7 +40,7 @@
     padding-top: 1.5em;
 }
 
-.menu-bar {
+.space-between {
     justify-content: space-between;
 }
 
@@ -48,9 +48,6 @@ a {
     text-decoration: none;
     color: #000;
 }
-
-/* .logo {
-} */
 
 .main-nav ul {
     list-style-type: none;
@@ -67,16 +64,16 @@ a {
     justify-content: center;
 }
 
+.small-container {
+    max-width: 960px;
+}
+
 .lead {
     font-size: 50px;
 }
 
 .actions {
     margin-top: 30px;
-}
-
-.pt-10 {
-    padding-top: 10px;
 }
 
 .btn {
@@ -86,10 +83,20 @@ a {
     border-radius: .25rem;
 }
 
+.btn-sm {
+    padding: .124rem .10rem;
+    border-radius: .25rem;
+    font-size: 1rem;
+}
+
 .btn-lg {
     padding: 0.5rem 1rem;
     font-size: 1.25rem;
     border-radius: 0.3rem;
+}
+
+.btn-full {
+    width: 100%;
 }
 
 .btn-green {
@@ -100,6 +107,11 @@ a {
 .btn-white {
     color: #000;
     background: #fff;
+}
+
+.btn-red {
+    color: #fff;
+    background: red;
 }
 
 .main {
@@ -136,13 +148,43 @@ label {
     color: red;
 }
 
+.pt-10 {
+    padding-top: 10px;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
 .m-50 {
     margin: 50px;
+}
+
+.flex-2 {
+    flex: 2;
+}
+
+.flex-1 {
+    flex: 1;
 }
 
 .col {
     flex: 1;
     margin-right: 20px;
+}
+
+.profile {
+    height: 100px;
+    /* width: 30%; */
+}
+
+.requests {
+    margin-left: 25px;
+    /* width: 70%; */
 }
 
 .footer {
