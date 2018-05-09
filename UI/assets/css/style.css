@@ -21,12 +21,16 @@
     max-width: 960px;
 }
 
-.header {
+.grey-bg {
     background: #edeef0;
 }
 
+.navigation {
+    height: 60px;
+}
+
 .landing-header {
-    height: 450px;
+    height: 400px;
     padding-top: 1.5em;
 }
 
@@ -106,6 +110,5 @@ a {
 }
 
 .footer {
-    background: #edeef0;
     height: 60px;
 }
