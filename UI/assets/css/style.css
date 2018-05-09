@@ -114,6 +114,10 @@ a {
     background: red;
 }
 
+.fit-content {
+    height: fit-content;
+}
+
 .main {
     margin-top: 100px;
     margin-bottom: 100px;
@@ -179,12 +183,10 @@ label {
 
 .profile {
     height: 100px;
-    /* width: 30%; */
 }
 
 .requests {
     margin-left: 25px;
-    /* width: 70%; */
 }
 
 .footer {
