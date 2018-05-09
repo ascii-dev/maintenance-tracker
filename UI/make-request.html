@@ -44,26 +44,26 @@
                 </div>
             </div>
             <div class="requests card flex-2">
-                <div class="mt-10 request flex space-between mb-10 col">
-                    <h3 class="title flex-2">My laptop screen is broken</h3>
-                    <a href="report.html" class="btn btn-green fit-content">View Report</a>
-                </div>
-                <hr>
-                <div class="mt-10 request flex space-between mb-10 col">
-                    <h3 class="title flex-2">My laptop screen is broken</h3>
-                    <a href="report.html" class="btn btn-green fit-content">View Report</a>
-                </div>
-                <hr>
-                <div class="mt-10 request flex space-between mb-10 col">
-                    <h3 class="title flex-2">My laptop screen is broken</h3>
-                    <a href="report.html" class="btn btn-green fit-content">View Report</a>
-                </div>
-                <hr>
-                <div class="mt-10 request flex space-between mb-10 col">
-                    <h3 class="title flex-2">My laptop screen is broken</h3>
-                    <a href="report.html" class="btn btn-green fit-content">View Report</a>
-                </div>
-                <hr>
+                <form action="dashboard.html" id="signup-form" method="POST">
+                    <div class="form-group">
+                        <label for="request-title">Title</label>
+                        <input type="text" name="request-title" id="request-title" class="form-control" placeholder="Enter a title for your request" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label for="request-type">Request Type</label>
+                        <select class="form-control" name="request-type" id="request-type" required="required">
+                            <option value="maintenance">Maintenance</option>
+                            <option value="repair">Repair</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="request-description">Description</label>
+                        <textarea type="text" name="request-description" id="request-description" class="form-control" placeholder="Describe your request in detail" required="required"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-lg btn-green">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
