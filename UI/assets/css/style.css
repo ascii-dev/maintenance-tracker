@@ -23,6 +23,10 @@
     padding-left: 15px;
 }
 
+.description {
+    max-width: 960px;
+}
+
 .grey-bg {
     background: #edeef0;
 }
