@@ -114,6 +114,11 @@ a {
     background: red;
 }
 
+.btn-orange {
+    color: #fff;
+    background: orange;
+}
+
 .fit-content {
     height: fit-content;
 }
