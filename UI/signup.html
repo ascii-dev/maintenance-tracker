@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Maintenance Tracker</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+    <header class="navigation grey-bg">
+        <div class="container div-center">
+            <div class="flex menu-bar pt-10">
+                <div class="logo">
+                    <a href="index.html" class="logo-text">Maintenance Tracker</a>
+                </div>
+                <nav class="main-nav">
+                    <ul class="flex">
+                        <li>
+                            <a href="signup.html">Sign Up</a>
+                        </li>
+                        <li>
+                            <a href="login.html">Login</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>            
+        </div>
+    </header>
+    <section class="main">
+        <div class="container div-center">
+            <div class="div-center">
+                    <h1 class="intro text-center">Sign Up</h1>
+            </div>
+            <div class="flex row">
+                <div class="col"></div>
+                <div class="col">
+                    <div class="card div-center">
+                        <form action="user-dashboard.html" id="signup-form" method="POST">
+                            <div class="form-group">
+                                <label for="name">Full name</label>
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Enter your full name" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" name="email" id="email" class="form-control" placeholder="Enter your email" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm_password">Confirm Password</label>
+                                <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Enter your password again" required="required">
+                            </div>
+                            <div id="errors"></div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-lg btn-green">Sign Up</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>                
+    </section>
+    <footer class="footer grey-bg">
+        <div class="container div-center flex menu-bar pt-10">
+            <div class="logo">
+                <a href="index.html" class="logo-text">Maintenance Tracker</a>
+            </div>
+            <nav class="main-nav">
+                <ul class="flex">
+                    <li>
+                        <a href="signup.html">Sign Up</a>
+                    </li>
+                    <li>
+                        <a href="login.html">Login</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+    <script src="assets/js/signup.js"></script>
+</body>
+</html>

@@ -18,7 +18,9 @@
 }
 
 .container {
-    max-width: 960px;
+    max-width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
 }
 
 .grey-bg {
@@ -96,15 +98,45 @@ a {
     background: #fff;
 }
 
-.description {
-    margin: 100px;
+.main {
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
 
-.features {
+.card {
+    position: relative;
+    background: #fff;
+    padding: .375rem .75rem;
+    border: 1px solid #edeef0;
+    border-radius: .25rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+
+.form-control {
+    display: block;
+    width: 95%;
+    padding: .375rem .75rem;
+    border: 1px solid #edeef0;
+    border-radius: .25rem;
+}
+
+.errors p {
+    color: red;
+}
+
+.m-50 {
     margin: 50px;
 }
 
-.feature {
+.col {
     flex: 1;
     margin-right: 20px;
 }
