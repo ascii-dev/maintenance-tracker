@@ -1,0 +1,8 @@
+{
+    "name": "maintenance-tracker",
+    "main": "server.js",
+    "dependencies": {
+        "express": "~4.16.3",
+        "body-parser": "~1.18.3"
+    }
+}
