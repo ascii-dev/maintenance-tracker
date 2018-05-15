@@ -14,12 +14,13 @@ const port = process.env.PORT || 8080;
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.json({ message: 'hooray! welcome to my api!' });
+  res.json({ message: 'hooray! welcome to my api!' });
 });
 
 // Register the routes in app
 app.use('/api/v1', router);
 
 // Start the server
-app.listen(port);
-console.log('Server started on port ' + port);
+app.listen(port, () => {
+  console.log(`Server started on port ${port}`);
+});
