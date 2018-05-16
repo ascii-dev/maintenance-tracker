@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha",
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon --exec babel-node --presets babel-preset-env ./server.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,8 @@
     "express": "^4.16.3"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "chai": "^4.1.2",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
