@@ -8,9 +8,9 @@ const requests = [
   },
   {
     id: 2,
-    title: 'Faulty iphone X',
-    type: 2,
-    description: 'My iPhone X fell from a three-storey building and the screen went blank',
+    title: 'Tesla needs maintenance',
+    type: 1,
+    description: 'I think my Tesla needs maintenance, it keeps making some funny sounds',
     status: 4,
   },
 ];
