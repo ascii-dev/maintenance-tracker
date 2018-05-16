@@ -1,14 +1,14 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+import express from 'express';
+import bodyParser from 'body-parser';
 
 const app = express();
 
-// Configure app tp user bodyParser so we can get data from a POST
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
 // Set our port
 const port = process.env.PORT || 8080;
+
+// Configure app to use bodyParser so we can get data from a POST
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Routes for our API
 const router = express.Router();
