@@ -98,7 +98,7 @@ describe('Requests', () => {
         });
     });
 
-    // Test update request (return 201)
+    // Test update request (return 400)
     it('should not update request if required fields are empty', (done) => {
       const id = 1;
       const data = {
@@ -112,6 +112,24 @@ describe('Requests', () => {
         .end((err, res) => {
           res.should.have.status(400);
           res.body.should.have.property('message').to.equals('Kindly fill in all required fields!');
+          done();
+        });
+    });
+
+    // Test update request (return 400)
+    it('should not update request if request id not found', (done) => {
+      const id = 3;
+      const data = {
+        title: 'Faulty play station',
+        type: 2,
+        description: 'My play station 4 does not boot any more',
+      };
+      chai.request(app)
+        .put(`/api/v1/users/requests/${id}`)
+        .send(data)
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.body.should.have.property('message').to.equals('Request does not exist!');
           done();
         });
     });
