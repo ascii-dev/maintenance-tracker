@@ -4,7 +4,7 @@
   "description": "Reach out to operators / repairs department regarding repair / maintenance & monitor request status",
   "main": "server.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha --require babel-register test/*.js --exit",
     "start": "node server.js",
     "dev": "nodemon --exec babel-node --presets babel-preset-env ./server.js"
   },
@@ -26,6 +26,7 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.11.0",
