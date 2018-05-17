@@ -20,4 +20,7 @@ requestRoutes.post('/users/requests', RequestController.createRequest);
 // Route PUT /api/v1/users/requests/{request_id} => Update request
 requestRoutes.put('/users/requests/:id', RequestController.updateRequest);
 
+// Route DELETE /api/v1/users/requests/{request_id} => Delete request
+requestRoutes.delete('/users/requests/:id', RequestController.deleteRequest);
+
 export default requestRoutes;
