@@ -1,5 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import indexRoutes from './routes/index';
+import requestRoutes from './routes/request';
 
 const app = express();
 
@@ -11,16 +13,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Routes for our API
-const router = express.Router();
-
-router.get('/', (req, res) => {
-  res.json({ message: 'hooray! welcome to my api!' });
-});
+// indexRoutes(app);
+// requestRoutes(app);
 
 // Register the routes in app
-app.use('/api/v1', router);
+app.use('/', indexRoutes);
+app.use('/api/v1', requestRoutes);
 
 // Start the server
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
+
+
+export default app; // For testing
