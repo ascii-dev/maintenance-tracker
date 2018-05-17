@@ -11,5 +11,7 @@ requestRoutes.get('/', (req, res) => {
 // Route GET /api/v1/users/requests => Get all user requests
 requestRoutes.get('/users/requests', RequestController.getAllRequests);
 
+// Route GET /api/v1/users/requests/{request_id} => Get single user request
+requestRoutes.get('/users/requests/:id', RequestController.getSingleRequest);
 
 export default requestRoutes;
