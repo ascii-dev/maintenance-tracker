@@ -74,7 +74,6 @@ class RequestController {
     if (findRequest) {
       requests.splice(findRequest.id - 1, 1);
       return res.status(200).json({
-        requests,
         message: 'Request deleted successfully!',
       });
     }
