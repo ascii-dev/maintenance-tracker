@@ -13,10 +13,10 @@ class RequestController {
 
   // Get single request from data
   static getSingleRequest(req, res) {
-    const foundRequest = requests.find(request => request.id === parseInt(req.params.id, 10));
-    if (foundRequest) {
+    const findRequest = requests.find(request => request.id === parseInt(req.params.id, 10));
+    if (findRequest) {
       return res.status(200).json({
-        request: foundRequest,
+        request: findRequest,
         message: 'Single request by user',
       });
     }
@@ -42,6 +42,29 @@ class RequestController {
     });
     return res.status(201).json({
       message: 'Request created successfully!',
+    });
+  }
+
+  // Update a request
+  static updateRequest(req, res) {
+    const findRequest = requests.find(request => request.id === parseInt(req.params.id, 10));
+    if (findRequest) {
+      if (req.body.title === '' || req.body.description === '' || req.body.type === '' || req.body.status === '') {
+        return res.status(400).json({
+          message: 'Kindly fill in all required fields!',
+        });
+      }
+      findRequest.title = req.body.title;
+      findRequest.type = req.body.type;
+      findRequest.description = req.body.description;
+      findRequest.status = req.body.status;
+
+      return res.status(200).json({
+        message: 'Request updated successfully!',
+      });
+    }
+    return res.status(404).json({
+      message: 'Request does not exist!',
     });
   }
 }

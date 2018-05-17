@@ -92,7 +92,7 @@ describe('Requests', () => {
         .put(`/api/v1/users/requests/${id}`)
         .send(data)
         .end((err, res) => {
-          res.should.have.status(201);
+          res.should.have.status(200);
           res.body.should.have.property('message').to.equals('Request updated successfully!');
           done();
         });
@@ -116,9 +116,9 @@ describe('Requests', () => {
         });
     });
 
-    // Test update request (return 400)
+    // Test update request (return 404)
     it('should not update request if request id not found', (done) => {
-      const id = 3;
+      const id = 4;
       const data = {
         title: 'Faulty play station',
         type: 2,
@@ -128,7 +128,7 @@ describe('Requests', () => {
         .put(`/api/v1/users/requests/${id}`)
         .send(data)
         .end((err, res) => {
-          res.should.have.status(400);
+          res.should.have.status(404);
           res.body.should.have.property('message').to.equals('Request does not exist!');
           done();
         });
