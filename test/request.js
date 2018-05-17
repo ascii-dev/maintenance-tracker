@@ -47,11 +47,9 @@ describe('Requests', () => {
     // Test create new request (return 201)
     it('should create a new request if required fields entered', (done) => {
       const data = {
-        id: 3,
         title: 'Faulty play station',
         type: 2,
         description: 'My play station 4 does not boot any more',
-        status: 1,
       };
       chai.request(app)
         .post('/api/v1/users/requests/')
@@ -66,11 +64,9 @@ describe('Requests', () => {
     // Test create new request (return 400)
     it('should not create a new request if required fields are empty', (done) => {
       const data = {
-        id: 3,
         title: '',
         type: 2,
         description: '',
-        status: 1,
       };
       chai.request(app)
         .post('/api/v1/users/requests/')

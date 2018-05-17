@@ -14,4 +14,7 @@ requestRoutes.get('/users/requests', RequestController.getAllRequests);
 // Route GET /api/v1/users/requests/{request_id} => Get single user request
 requestRoutes.get('/users/requests/:id', RequestController.getSingleRequest);
 
+// Route POST /api/v1/users/requests => Create new request
+requestRoutes.post('/users/requests', RequestController.createRequest);
+
 export default requestRoutes;
