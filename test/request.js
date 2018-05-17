@@ -80,7 +80,7 @@ describe('Requests', () => {
   });
 
   describe('/PUT api/v1/users/requests/:id', () => {
-    // Test update request (return 201)
+    // Test update request (return 200)
     it('should update request if required fields entered', (done) => {
       const id = 1;
       const data = {
@@ -127,6 +127,32 @@ describe('Requests', () => {
       chai.request(app)
         .put(`/api/v1/users/requests/${id}`)
         .send(data)
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.should.have.property('message').to.equals('Request does not exist!');
+          done();
+        });
+    });
+  });
+
+  describe('/DELETE api/v1/users/requests/:id', () => {
+    // Test delete request (return 200)
+    it('should delete request if request id is fount', (done) => {
+      const id = 1;
+      chai.request(app)
+        .delete(`/api/v1/users/requests/${id}`)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.have.property('message').to.equals('Request deleted successfully!');
+          done();
+        });
+    });
+
+    // Test update request (return 404)
+    it('should not update request if request id not found', (done) => {
+      const id = 4;
+      chai.request(app)
+        .delete(`/api/v1/users/requests/${id}`)
         .end((err, res) => {
           res.should.have.status(404);
           res.body.should.have.property('message').to.equals('Request does not exist!');

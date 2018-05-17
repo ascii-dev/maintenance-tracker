@@ -67,6 +67,21 @@ class RequestController {
       message: 'Request does not exist!',
     });
   }
+
+  // Delete a request
+  static deleteRequest(req, res) {
+    const findRequest = requests.find(request => request.id === parseInt(req.params.id, 10));
+    if (findRequest) {
+      requests.splice(findRequest.id - 1, 1);
+      return res.status(200).json({
+        requests,
+        message: 'Request deleted successfully!',
+      });
+    }
+    return res.status(404).json({
+      message: 'Request does not exist!',
+    });
+  }
 }
 
 export default RequestController;
