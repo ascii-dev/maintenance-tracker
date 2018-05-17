@@ -42,4 +42,40 @@ describe('Requests', () => {
         });
     });
   });
+
+  describe('/POST api/v1/users/requests', () => {
+    // Test create new request (return 201)
+    it('should create a new request if required fields entered', (done) => {
+      const data = {
+        title: 'Faulty play station',
+        type: 2,
+        description: 'My play station 4 does not boot any more',
+      };
+      chai.request(app)
+        .post('/api/v1/users/requests/')
+        .send(data)
+        .end((err, res) => {
+          res.should.have.status(201);
+          res.body.should.have.property('message').to.equals('Request created successfully!');
+          done();
+        });
+    });
+
+    // Test create new request (return 400)
+    it('should not create a new request if required fields are empty', (done) => {
+      const data = {
+        title: '',
+        type: 2,
+        description: '',
+      };
+      chai.request(app)
+        .post('/api/v1/users/requests/')
+        .send(data)
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.body.should.have.property('message').to.equals('Kindly fill in all required fields!');
+          done();
+        });
+    });
+  });
 });

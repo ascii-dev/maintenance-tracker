@@ -24,6 +24,26 @@ class RequestController {
       message: 'Request not found!',
     });
   }
+
+  // Create new request
+  static createRequest(req, res) {
+    const id = requests.length + 1;
+    if (req.body.title === '' || req.body.description === '' || req.body.type === '') {
+      return res.status(400).json({
+        message: 'Kindly fill in all required fields!',
+      });
+    }
+    requests.push({
+      id,
+      title: req.body.title,
+      description: req.body.description,
+      type: req.body.type,
+      status: 1,
+    });
+    return res.status(201).json({
+      message: 'Request created successfully!',
+    });
+  }
 }
 
 export default RequestController;
