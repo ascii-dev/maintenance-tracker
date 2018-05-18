@@ -4,7 +4,7 @@
   "description": "Reach out to operators / repairs department regarding repair / maintenance & monitor request status",
   "main": "server.js",
   "scripts": {
-    "test": "nyc --reporter=lcov --reporter=text-lcov mocha --require babel-register test/*.js --exit",
+    "test": "nyc mocha --require babel-register test/*.js --exit",
     "start": "node server.js",
     "dev": "nodemon --exec babel-node --presets babel-preset-env ./server.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-plugin-istanbul": "^4.1.6",
     "babel-preset-env": "^1.7.0",
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
