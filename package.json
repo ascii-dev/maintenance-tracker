@@ -6,7 +6,8 @@
   "scripts": {
     "test": "nyc --reporter=lcov --reporter=text-lcov mocha --require babel-register test/*.js --exit",
     "start": "node server.js",
-    "dev": "nodemon --exec babel-node --presets babel-preset-env ./server.js"
+    "dev": "nodemon --exec babel-node --presets babel-preset-env ./server.js",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
