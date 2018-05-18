@@ -1,2 +1,5 @@
 language: node_js
 node_js: "8.11.1"
+
+after_success:
+- ./node_modules/.bin/mocha test/**.js -R mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js
