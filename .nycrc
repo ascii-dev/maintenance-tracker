@@ -1,0 +1,29 @@
+{
+  "check-coverage": true,
+  "per-file": true,
+  "lines": 80,
+  "statements": 80,
+  "functions": 80,
+  "branches": 50,
+  "require": [
+    "babel-register",
+    "regenerator-runtime/runtime"
+  ],
+  "exclude": [
+    "**/node_modules/**",
+    "**/tests/**",
+    "**/UI/**",
+    "server.js"
+  ],
+  "include": [
+    "**/controllers/**",
+    "**/dummyData/**",
+    "**/routes/**",
+    "**/test/**"
+  ],
+  "reporter": ["lcov", "json", "text", "html"],
+  "sourceMap": false,
+  "instrument": false,
+  "cache": true,
+  "report-dir": "./coverage"
+}
