@@ -1,16 +1,11 @@
 {
-  "check-coverage": true,
-  "per-file": true,
-  "require": [
-    "babel-register",
-    "regenerator-runtime/runtime"
-  ],
   "reporter": [
     "lcov",
     "text-summary"
   ],
+  "require": [
+    "babel-register"
+  ],
   "sourceMap": false,
-  "instrument": false,
-  "cache": true,
-  "report-dir": "./coverage"
+  "instrument": false
 }
