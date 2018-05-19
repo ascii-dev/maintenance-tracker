@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test nyc mocha --require babel-register test/*.js --exit",
-    "start": "node server.js",
+    "start": "node --exec babel-node --presets babel-preset-env server.js",
     "dev": "nodemon --exec babel-node --presets babel-preset-env ./server.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
