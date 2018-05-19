@@ -4,7 +4,7 @@
   "description": "Reach out to operators / repairs department regarding repair / maintenance & monitor request status",
   "main": "server.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=dev nyc mocha --require babel-register test/*.js --exit",
+    "test": "cross-env NODE_ENV=test nyc mocha --require babel-register test/*.js --exit",
     "start": "node server.js",
     "dev": "nodemon --exec babel-node --presets babel-preset-env ./server.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
