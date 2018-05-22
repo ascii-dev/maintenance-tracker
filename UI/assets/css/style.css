@@ -102,7 +102,7 @@ a {
 }
 
 .btn-full {
-    width: 100%;
+    width: 90%;
 }
 
 .btn-green {
@@ -118,6 +118,15 @@ a {
 .btn-red {
     color: #fff;
     background: red;
+}
+
+.btn-muted {
+  color: #fff;
+  background: #edeef0;
+}
+
+.in-review {
+  color: orange;
 }
 
 .btn-orange {
