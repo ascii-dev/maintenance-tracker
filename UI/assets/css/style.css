@@ -4,6 +4,11 @@
     font-family: 'Poppins', sans-serif;
 }
 
+a {
+    text-decoration: none;
+    color: #000;
+}
+
 .div-center {
     margin-left: auto;
     margin-right: auto;
@@ -31,13 +36,22 @@
     background: #edeef0;
 }
 
+.orange-bg {
+  background: #FF4500;
+}
+
 .navigation {
-    height: 60px;
+  height: 60px;
+}
+
+.white-text {
+  color: #fff;
 }
 
 .landing-header {
-    height: 400px;
-    padding-top: 1.5em;
+  background: url('../images/bg.jpg') center no-repeat;
+  height: 500px;
+  padding-top: 1.5em;
 }
 
 .space-between {
@@ -47,13 +61,9 @@
 .logo-text {
   font-family: 'Gloria Hallelujah', cursive;
   font-weight: 400;
-  font-size: 40px;
+  font-size: 34px;
 }
 
-a {
-    text-decoration: none;
-    color: #000;
-}
 
 .main-nav ul {
     list-style-type: none;
