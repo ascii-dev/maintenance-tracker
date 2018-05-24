@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import indexRoutes from './routes/index';
 import requestRoutes from './routes/request';
+import authRoutes from './routes/auth';
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 // Register the routes in app
 app.use('/', indexRoutes);
 app.use('/api/v1', requestRoutes);
+app.use('/auth', authRoutes);
 
 // Start the server
 app.listen(port, () => {
