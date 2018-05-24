@@ -1,6 +1,6 @@
 import pg from 'pg';
 import data from '../dummyData/index';
-import config from '../config';
+import config from '../config/database';
 
 const { requests } = data;
 const pool = new pg.Pool(config);
