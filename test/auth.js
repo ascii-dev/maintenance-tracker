@@ -33,4 +33,45 @@ describe('Authentication', () => {
         });
     });
   });
+  describe('Login to account', () => {
+    it('should log a user in successfully', (done) => {
+      const details = {
+        email: 'johndoe@gmail.com',
+        password: 'johndoe',
+      };
+      chai.request(app)
+        .post('/auth/login')
+        .send(details)
+        .end((err, res) => {
+          res.should.have.status(200);
+          done();
+        });
+    });
+    it('should not log a user in successfully when email is incorrect', (done) => {
+      const details = {
+        email: '12rfcas@gmail.com',
+        password: 'johndoe',
+      };
+      chai.request(app)
+        .post('/auth/login')
+        .send(details)
+        .end((err, res) => {
+          res.should.have.status(404);
+          done();
+        });
+    });
+    it('should not log a user in successfully when password is incorrect', (done) => {
+      const details = {
+        email: 'johndoe@gmail.com',
+        password: '12rfcas',
+      };
+      chai.request(app)
+        .post('/auth/login')
+        .send(details)
+        .end((err, res) => {
+          res.should.have.status(401);
+          done();
+        });
+    });
+  });
 });
