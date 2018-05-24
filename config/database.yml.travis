@@ -1,8 +1,8 @@
 const config = {
   user: 'postgres',
   host: 'localhost',
-  database: 'm_tracker',
-  password: 'alessiacara',
+  database: 'travis_ci_test',
+  password: '',
   port: '5432',
 };
 
