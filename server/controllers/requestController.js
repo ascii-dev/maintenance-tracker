@@ -7,36 +7,27 @@ const pool = new pg.Pool(config.database);
 class RequestController {
   // Get all requests fom data
   static getAllRequests(req, res) {
-    pool.connect((err, client, done) => {
-      if (err) {
-        done();
-        return res.status(500).json({ success: false, data: err });
+    pool.query(`SELECT * FROM requests WHERE user_id = '${req.userId}' ORDER BY id ASC`, (error, result) => {
+      if (error) {
+        return res.status(404).send('Requests for this user does not exist');
       }
-      client.query(`SELECT * FROM requests WHERE user_id = '${req.userId}' ORDER BY id ASC`, (error, result) => {
-        done();
-        if (error) {
-          res.status(500).send('There was a problem while trying to get user requests');
-        }
-        return res.status(200).json({
-          allRequests: result.rows,
-          message: 'All requests by user',
-        });
+      return res.status(200).json({
+        allRequests: result.rows,
+        message: 'All requests by user',
       });
-      return null;
     });
   }
 
-  // Get single request from data
+  // Get single user request
   static getSingleRequest(req, res) {
-    const findRequest = requests.find(request => request.id === parseInt(req.params.id, 10));
-    if (findRequest) {
+    pool.query(`SELECT * FROM requests WHERE id = '${req.id}'`, (error, result) => {
+      if (error) {
+        return res.status(404).send('The request does not exist');
+      }
       return res.status(200).json({
-        request: findRequest,
-        message: 'Single request by user',
+        requests: result.rows,
+        message: 'Single request',
       });
-    }
-    return res.status(404).json({
-      message: 'Request not found!',
     });
   }
 

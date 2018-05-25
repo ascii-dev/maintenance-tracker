@@ -13,7 +13,7 @@ requestRoutes.get('/', (req, res) => {
 requestRoutes.get('/users/requests', VerifyToken, RequestController.getAllRequests);
 
 // Route GET /api/v1/users/requests/{request_id} => Get single user request
-requestRoutes.get('/users/requests/:id', RequestController.getSingleRequest);
+requestRoutes.get('/users/requests/:id', VerifyToken, RequestController.getSingleRequest);
 
 // Route POST /api/v1/users/requests => Create new request
 requestRoutes.post('/users/requests', RequestController.createRequest);

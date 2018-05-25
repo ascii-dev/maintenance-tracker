@@ -21,6 +21,7 @@ describe('Requests', () => {
     it('should get all user requests', (done) => {
       chai.request(app)
         .get('/api/v1/users/requests/')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3MTYwNDk2LCJleHAiOjE1MjcyNDY4OTZ9.76WjBkFxaJw9GjoV5Q3ElAErjw1k6vW8QobpfkMIvXA')
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -39,6 +40,7 @@ describe('Requests', () => {
       };
       chai.request(app)
         .post('/api/v1/users/requests/')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3MTYwNDk2LCJleHAiOjE1MjcyNDY4OTZ9.76WjBkFxaJw9GjoV5Q3ElAErjw1k6vW8QobpfkMIvXA')
         .send(data)
         .end((err, res) => {
           res.should.have.status(201);
@@ -56,6 +58,7 @@ describe('Requests', () => {
       };
       chai.request(app)
         .post('/api/v1/users/requests/')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3MTYwNDk2LCJleHAiOjE1MjcyNDY4OTZ9.76WjBkFxaJw9GjoV5Q3ElAErjw1k6vW8QobpfkMIvXA')
         .send(data)
         .end((err, res) => {
           res.should.have.status(400);
@@ -71,6 +74,7 @@ describe('Requests', () => {
       const id = 1;
       chai.request(app)
         .get(`/api/v1/users/requests/${id}`)
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3MTYwNDk2LCJleHAiOjE1MjcyNDY4OTZ9.76WjBkFxaJw9GjoV5Q3ElAErjw1k6vW8QobpfkMIvXA')
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -83,9 +87,9 @@ describe('Requests', () => {
       const id = 13;
       chai.request(app)
         .get(`/api/v1/users/requests/${id}`)
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3MTYwNDk2LCJleHAiOjE1MjcyNDY4OTZ9.76WjBkFxaJw9GjoV5Q3ElAErjw1k6vW8QobpfkMIvXA')
         .end((err, res) => {
           res.should.have.status(404);
-          res.body.should.have.property('message').to.equals('Request not found!');
           done();
         });
     });
