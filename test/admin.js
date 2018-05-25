@@ -20,10 +20,36 @@ describe('Admin Requests', () => {
     it('should get all requests for the admin', (done) => {
       chai.request(app)
         .get('/requests/')
-        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTI3MjUyMDAzLCJleHAiOjE1MjczMzg0MDN9.lboQNm87PGgTC3dohvDoCr1S-_7p5rd1bFS9H0xNC3A')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTI3MjUzMzYxLCJleHAiOjE1MjczMzk3NjF9.XoaWy1ErF8Ibpcs-zFhHe9AjyiF5yMq0F3UfqfXBbWM')
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
+          done();
+        });
+    });
+  });
+  describe('GET api/v1/requests/:id', () => {
+    // Test GET single request (return 200)
+    it('should get the request whose id is 1', (done) => {
+      const id = 1;
+      chai.request(app)
+        .get(`/api/v1/users/requests/${id}`)
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTI3MjUzMzYxLCJleHAiOjE1MjczMzk3NjF9.XoaWy1ErF8Ibpcs-zFhHe9AjyiF5yMq0F3UfqfXBbWM')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
+
+    // Test GET single request (return 404)
+    it('should not get request when the id supplied does not exist', (done) => {
+      const id = 1000;
+      chai.request(app)
+        .get(`/api/v1/users/requests/${id}`)
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTI3MjUzMzYxLCJleHAiOjE1MjczMzk3NjF9.XoaWy1ErF8Ibpcs-zFhHe9AjyiF5yMq0F3UfqfXBbWM')
+        .end((err, res) => {
+          res.should.have.status(404);
           done();
         });
     });
