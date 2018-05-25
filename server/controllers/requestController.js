@@ -12,10 +12,10 @@ class RequestController {
         done();
         return res.status(500).json({ success: false, data: err });
       }
-      client.query('SELECT * FROM requests ORDER BY id ASC', (error, result) => {
+      client.query(`SELECT * FROM requests WHERE user_id = '${req.userId}' ORDER BY id ASC`, (error, result) => {
         done();
         if (error) {
-          res.status(400).send(error);
+          res.status(500).send('There was a problem while trying to get user requests');
         }
         return res.status(200).json({
           allRequests: result.rows,

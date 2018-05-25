@@ -16,23 +16,23 @@ describe('Authentication', () => {
     done();
     return pool;
   });
-  describe('Create account', () => {
-    // Test user registration
-    it('should register a user successfully', (done) => {
-      const user = {
-        name: 'John Doe',
-        email: 'johndoe@gmail.com',
-        password: 'johndoe',
-      };
-      chai.request(app)
-        .post('/auth/signup')
-        .send(user)
-        .end((err, res) => {
-          res.should.have.status(201);
-          done();
-        });
-    });
-  });
+  // describe('Create account', () => {
+  //   // Test user registration
+  //   it('should register a user successfully', (done) => {
+  //     const user = {
+  //       name: 'John Doe',
+  //       email: 'johndoe@gmail.com',
+  //       password: 'johndoe',
+  //     };
+  //     chai.request(app)
+  //       .post('/auth/signup')
+  //       .send(user)
+  //       .end((err, res) => {
+  //         res.should.have.status(201);
+  //         done();
+  //       });
+  //   });
+  // });
   describe('Login to account', () => {
     it('should log a user in successfully', (done) => {
       const details = {

@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import RequestController from '../controllers/requestController';
+import VerifyToken from '../middlewares/VerifyToken';
 
 const requestRoutes = Router();
 
@@ -9,7 +10,7 @@ requestRoutes.get('/', (req, res) => {
 });
 
 // Route GET /api/v1/users/requests => Get all user requests
-requestRoutes.get('/users/requests', RequestController.getAllRequests);
+requestRoutes.get('/users/requests', VerifyToken, RequestController.getAllRequests);
 
 // Route GET /api/v1/users/requests/{request_id} => Get single user request
 requestRoutes.get('/users/requests/:id', RequestController.getSingleRequest);
