@@ -1,8 +1,6 @@
-import { Router } from 'express';
+import requestRoutes from './config';
 import RequestController from '../controllers/requestController';
 import VerifyToken from '../middlewares/VerifyToken';
-
-const requestRoutes = Router();
 
 // Route /api/v1
 requestRoutes.get('/', (req, res) => {

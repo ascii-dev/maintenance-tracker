@@ -1,7 +1,6 @@
-import { Router } from 'express';
+import authRoutes from './config';
 import AuthController from '../controllers/authController';
 
-const authRoutes = Router();
 
 // Route POST /auth/signup => User create an account
 authRoutes.post('/signup', AuthController.signup);

@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import indexRoutes from './routes/index';
+import adminRoutes from './routes/admin';
 import requestRoutes from './routes/request';
 import authRoutes from './routes/auth';
 
@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 // requestRoutes(app);
 
 // Register the routes in app
-app.use('/', indexRoutes);
+app.use('/', adminRoutes);
 app.use('/api/v1', requestRoutes);
 app.use('/auth', authRoutes);
 
