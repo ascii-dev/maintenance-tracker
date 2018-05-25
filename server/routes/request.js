@@ -16,7 +16,7 @@ requestRoutes.get('/users/requests', VerifyToken, RequestController.getAllReques
 requestRoutes.get('/users/requests/:id', VerifyToken, RequestController.getSingleRequest);
 
 // Route POST /api/v1/users/requests => Create new request
-requestRoutes.post('/users/requests', RequestController.createRequest);
+requestRoutes.post('/users/requests', VerifyToken, RequestController.createRequest);
 
 // Route PUT /api/v1/users/requests/{request_id} => Update request
 requestRoutes.put('/users/requests/:id', RequestController.updateRequest);
