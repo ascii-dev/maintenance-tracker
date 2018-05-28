@@ -5,7 +5,13 @@ import pool from '../config/connect';
 
 
 class AuthController {
-  // User create account
+  /**
+   * Create a user account
+   * @param {string} name - The name of the user account to be created
+   * @param {string} email - The email of the user account to be created
+   * @param {string} password - The password of the user account to be created
+   * @return an object containing the user account details and an authentication token if successful
+   */
   static signup(req, res) {
     if (req.body.name === '') {
       return res.status(400).send('Name can not be blank');
@@ -34,6 +40,12 @@ class AuthController {
     return null;
   }
 
+  /**
+   * Login to a user account
+   * @param {string} email - The email of the user account
+   * @param {string} password - The password of the user account
+   * @return an object containing the request and an authentication token if successful
+   */
   static login(req, res) {
     if (req.body.email === '') {
       return res.status(400).send('Email can not be blank');

@@ -10,16 +10,13 @@ requestRoutes.get('/', (req, res) => {
 // Route GET /api/v1/users/requests => Get all user requests
 requestRoutes.get('/users/requests', VerifyToken, RequestController.getAllRequests);
 
-// Route GET /api/v1/users/requests/{request_id} => Get single user request
-requestRoutes.get('/users/requests/:id', VerifyToken, RequestController.getSingleRequest);
-
 // Route POST /api/v1/users/requests => Create new request
 requestRoutes.post('/users/requests', VerifyToken, RequestController.createRequest);
 
-// Route PUT /api/v1/users/requests/{request_id} => Update request
-requestRoutes.put('/users/requests/:id', RequestController.updateRequest);
+// Route GET /api/v1/users/requests/{request_id} => Get single user request
+requestRoutes.get('/users/requests/:id', VerifyToken, RequestController.getSingleRequest);
 
-// Route DELETE /api/v1/users/requests/{request_id} => Delete request
-requestRoutes.delete('/users/requests/:id', RequestController.deleteRequest);
+// Route PUT /api/v1/users/requests/{request_id} => Update request
+requestRoutes.put('/users/requests/:id', VerifyToken, RequestController.updateRequest);
 
 export default requestRoutes;
