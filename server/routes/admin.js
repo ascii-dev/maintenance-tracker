@@ -7,5 +7,6 @@ adminRoutes.get('/requests', VerifyToken, VerifyAdmin, AdminController.getAllReq
 adminRoutes.get('/requests/:id', VerifyToken, VerifyAdmin, AdminController.getSingleRequest);
 adminRoutes.put('/requests/:id/approve', VerifyToken, VerifyAdmin, AdminController.approveRequest);
 adminRoutes.put('/requests/:id/disapprove', VerifyToken, VerifyAdmin, AdminController.disapproveRequest);
+adminRoutes.put('/requests/:id/resolve', VerifyToken, VerifyAdmin, AdminController.resolveRequest);
 
 export default adminRoutes;

@@ -68,7 +68,7 @@ class AdminController {
   }
 
   /**
-   * (Admin) Approve a request a user has made
+   * (Admin) Disapprove a request a user has made
    * @param {string} token - Takes in a token string
    * @param {number} id - Takes in a request id
    * @return a response 200 if the process was successful
@@ -80,6 +80,32 @@ class AdminController {
       }
       if (result.rowCount > 0) {
         return res.status(200).send('Request updated successfully');
+      }
+      return res.status(404).send('The specified request does not exist');
+    });
+  }
+
+  /**
+   * (Admin) Resolve a request a user has made
+   * @param {string} token - Takes in a token string
+   * @param {number} id - Takes in a request id
+   * @return a response 200 if the process was successful
+   */
+  static resolveRequest(req, res) {
+    pool.query(`SELECT status_id FROM requests WHERE id = ${req.params.id}`, (err, response) => {
+      if (err) {
+        return res.status(500).send('An error occured when getting the request');
+      }
+      if (response.rowCount > 0) {
+        pool.query(`UPDATE requests SET status_id = 3 WHERE id = ${req.params.id}`, (error, result) => {
+          if (error) {
+            return res.status(500).send('An error occured when disapproving the request');
+          }
+          if (result.rowCount > 0) {
+            return res.status(200).send('Request updated successfully');
+          }
+          return res.status(404).send('The specified request does not exist');
+        });
       }
       return res.status(404).send('The specified request does not exist');
     });
