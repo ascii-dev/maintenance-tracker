@@ -1,27 +1,19 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import pg from 'pg';
-
 import app from '../server/server';
-import config from './config/config';
-
-process.env.NODE_ENV = 'test';
 
 chai.use(chaiHttp);
 chai.should();
 
+const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTI3NjI2NDQ0fQ.FfISUHBFjNMj0Ot3OZ49mqgPOwm03e7fyPd5bLq8d0w';
+
 describe('Requests', () => {
-  before((done) => {
-    const pool = new pg.Pool(config.database);
-    done();
-    return pool;
-  });
   describe('/GET api/v1/users/requests', () => {
     // Test GET all requests
     it('should get all user requests', (done) => {
       chai.request(app)
         .get('/api/v1/users/requests/')
-        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3NDk0NTc1LCJleHAiOjE1Mjc1ODA5NzV9.AfEVJzvnL-OhvVYIGDgpNrmOiBuYW5XU7Q9bpx9f1uY')
+        .set('x-access-token', userToken)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -40,7 +32,7 @@ describe('Requests', () => {
       };
       chai.request(app)
         .post('/api/v1/users/requests/')
-        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3NDk0NTc1LCJleHAiOjE1Mjc1ODA5NzV9.AfEVJzvnL-OhvVYIGDgpNrmOiBuYW5XU7Q9bpx9f1uY')
+        .set('x-access-token', userToken)
         .send(data)
         .end((err, res) => {
           res.should.have.status(201);
@@ -58,7 +50,7 @@ describe('Requests', () => {
       };
       chai.request(app)
         .post('/api/v1/users/requests/')
-        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3NDk0NTc1LCJleHAiOjE1Mjc1ODA5NzV9.AfEVJzvnL-OhvVYIGDgpNrmOiBuYW5XU7Q9bpx9f1uY')
+        .set('x-access-token', userToken)
         .send(data)
         .end((err, res) => {
           res.should.have.status(403);
@@ -73,7 +65,7 @@ describe('Requests', () => {
       const id = 1;
       chai.request(app)
         .get(`/api/v1/users/requests/${id}`)
-        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3NDk0NTc1LCJleHAiOjE1Mjc1ODA5NzV9.AfEVJzvnL-OhvVYIGDgpNrmOiBuYW5XU7Q9bpx9f1uY')
+        .set('x-access-token', userToken)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -86,7 +78,7 @@ describe('Requests', () => {
       const id = 1000;
       chai.request(app)
         .get(`/api/v1/users/requests/${id}`)
-        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3NDk0NTc1LCJleHAiOjE1Mjc1ODA5NzV9.AfEVJzvnL-OhvVYIGDgpNrmOiBuYW5XU7Q9bpx9f1uY')
+        .set('x-access-token', userToken)
         .end((err, res) => {
           res.should.have.status(404);
           done();
@@ -105,7 +97,7 @@ describe('Requests', () => {
       };
       chai.request(app)
         .put(`/api/v1/users/requests/${id}`)
-        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3NDk0NTc1LCJleHAiOjE1Mjc1ODA5NzV9.AfEVJzvnL-OhvVYIGDgpNrmOiBuYW5XU7Q9bpx9f1uY')
+        .set('x-access-token', userToken)
         .send(data)
         .end((err, res) => {
           res.should.have.status(200);
@@ -124,7 +116,7 @@ describe('Requests', () => {
       };
       chai.request(app)
         .put(`/api/v1/users/requests/${id}`)
-        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3NDk0NTc1LCJleHAiOjE1Mjc1ODA5NzV9.AfEVJzvnL-OhvVYIGDgpNrmOiBuYW5XU7Q9bpx9f1uY')
+        .set('x-access-token', userToken)
         .send(data)
         .end((err, res) => {
           res.should.have.status(403);
@@ -142,7 +134,7 @@ describe('Requests', () => {
       };
       chai.request(app)
         .put(`/api/v1/users/requests/${id}`)
-        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3NDk0NTc1LCJleHAiOjE1Mjc1ODA5NzV9.AfEVJzvnL-OhvVYIGDgpNrmOiBuYW5XU7Q9bpx9f1uY')
+        .set('x-access-token', userToken)
         .send(data)
         .end((err, res) => {
           res.should.have.status(404);
