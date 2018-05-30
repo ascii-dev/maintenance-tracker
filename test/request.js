@@ -1,11 +1,21 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import app from '../server';
+import pg from 'pg';
+
+import app from '../server/server';
+import config from './config/config';
+
+process.env.NODE_ENV = 'test';
 
 chai.use(chaiHttp);
 chai.should();
 
 describe('Requests', () => {
+  before((done) => {
+    const pool = new pg.Pool(config.database);
+    done();
+    return pool;
+  });
   describe('/GET api/v1/users/requests', () => {
     // Test GET all requests
     it('should get all user requests', (done) => {
@@ -17,35 +27,11 @@ describe('Requests', () => {
           done();
         });
     });
-
-    // Test GET single request (return 200)
-    it('should get user request with id 1', (done) => {
-      const id = 1;
-      chai.request(app)
-        .get(`/api/v1/users/requests/${id}`)
-        .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.be.a('object');
-          done();
-        });
-    });
-
-    // Test GET single request (return 404)
-    it('should not get user request because id does not exist', (done) => {
-      const id = 3;
-      chai.request(app)
-        .get(`/api/v1/users/requests/${id}`)
-        .end((err, res) => {
-          res.should.have.status(404);
-          res.body.should.have.property('message').to.equals('Request not found!');
-          done();
-        });
-    });
   });
 
   describe('/POST api/v1/users/requests', () => {
     // Test create new request (return 201)
-    it('should create a new request if required fields entered', (done) => {
+    it('should create a new request if required fields are entered', (done) => {
       const data = {
         title: 'Faulty play station',
         type: 2,
@@ -74,6 +60,32 @@ describe('Requests', () => {
         .end((err, res) => {
           res.should.have.status(400);
           res.body.should.have.property('message').to.equals('Kindly fill in all required fields!');
+          done();
+        });
+    });
+  });
+
+  describe('GET api/v1/requests/:id', () => {
+    // Test GET single request (return 200)
+    it('should get the request whose id is 1', (done) => {
+      const id = 1;
+      chai.request(app)
+        .get(`/api/v1/users/requests/${id}`)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
+
+    // Test GET single request (return 404)
+    it('should not get user request when request id does not exist', (done) => {
+      const id = 13;
+      chai.request(app)
+        .get(`/api/v1/users/requests/${id}`)
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.should.have.property('message').to.equals('Request not found!');
           done();
         });
     });
@@ -117,7 +129,7 @@ describe('Requests', () => {
     });
 
     // Test update request (return 404)
-    it('should not update request if request id not found', (done) => {
+    it('should not update request if request id is not found', (done) => {
       const id = 4;
       const data = {
         title: 'Faulty play station',
@@ -137,7 +149,7 @@ describe('Requests', () => {
 
   describe('/DELETE api/v1/users/requests/:id', () => {
     // Test delete request (return 200)
-    it('should delete request if request id is fount', (done) => {
+    it('should delete request if request id is found', (done) => {
       const id = 1;
       chai.request(app)
         .delete(`/api/v1/users/requests/${id}`)
@@ -149,7 +161,7 @@ describe('Requests', () => {
     });
 
     // Test update request (return 404)
-    it('should not update request if request id not found', (done) => {
+    it('should not update request if request id is not found', (done) => {
       const id = 4;
       chai.request(app)
         .delete(`/api/v1/users/requests/${id}`)
