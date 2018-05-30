@@ -44,7 +44,7 @@ describe('Requests', () => {
         .send(data)
         .end((err, res) => {
           res.should.have.status(201);
-          res.body.should.have.property('message').to.equals('Request created successfully!');
+          res.body.should.have.property('message').to.equals('Your request has been created successfully');
           done();
         });
     });
@@ -61,8 +61,7 @@ describe('Requests', () => {
         .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3MTYwNDk2LCJleHAiOjE1MjcyNDY4OTZ9.76WjBkFxaJw9GjoV5Q3ElAErjw1k6vW8QobpfkMIvXA')
         .send(data)
         .end((err, res) => {
-          res.should.have.status(400);
-          res.body.should.have.property('message').to.equals('Kindly fill in all required fields!');
+          res.should.have.status(403);
           done();
         });
     });
@@ -84,7 +83,7 @@ describe('Requests', () => {
 
     // Test GET single request (return 404)
     it('should not get user request when request id does not exist', (done) => {
-      const id = 13;
+      const id = 1000;
       chai.request(app)
         .get(`/api/v1/users/requests/${id}`)
         .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3MTYwNDk2LCJleHAiOjE1MjcyNDY4OTZ9.76WjBkFxaJw9GjoV5Q3ElAErjw1k6vW8QobpfkMIvXA')

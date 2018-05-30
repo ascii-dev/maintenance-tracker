@@ -20,9 +20,12 @@ class RequestController {
 
   // Get single user request
   static getSingleRequest(req, res) {
-    pool.query(`SELECT * FROM requests WHERE id = '${req.id}'`, (error, result) => {
+    pool.query(`SELECT * FROM requests WHERE id = '${req.params.id}'`, (error, result) => {
       if (error) {
-        return res.status(404).send('The request does not exist');
+        return res.status(500).send('The was an error when fetching the request');
+      }
+      if (result.rowCount === 0) {
+        return res.status(404).send('The request could not be found');
       }
       return res.status(200).json({
         requests: result.rows,
@@ -33,22 +36,28 @@ class RequestController {
 
   // Create new request
   static createRequest(req, res) {
-    const id = requests.length + 1;
-    if (req.body.title === '' || req.body.description === '' || req.body.type === '') {
-      return res.status(400).json({
-        message: 'Kindly fill in all required fields!',
-      });
+    if (req.body.title === '') {
+      return res.status(403).send('Request title can not be empty');
     }
-    requests.push({
-      id,
-      title: req.body.title,
-      description: req.body.description,
-      type: req.body.type,
-      status: 1,
+    if (req.body.description === '') {
+      return res.status(403).send('Request description can not be empty');
+    }
+    if (req.body.type === '') {
+      return res.status(403).send('Request type can not be empty');
+    }
+    pool.query(`INSERT INTO requests (title, type, description, user_id) values ('${req.body.title}', '${req.body.type}', '${req.body.description}', ${req.userId}) RETURNING *`, (err, result) => {
+      if (err) {
+        return res.status(500).send('There was a problem creating the request');
+      }
+      return res.status(201).json({
+        title: result.rows[0].title,
+        type: result.rows[0].type,
+        description: result.rows[0].description,
+        creator: result.rows[0].user_id,
+        message: 'Your request has been created successfully',
+      });
     });
-    return res.status(201).json({
-      message: 'Request created successfully!',
-    });
+    return null;
   }
 
   // Update a request
