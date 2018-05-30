@@ -48,6 +48,24 @@ class AdminController {
       return null;
     });
   }
+
+  /**
+   * (Admin) Approve a request a user has made
+   * @param {string} token - Takes in a token string
+   * @param {number} id - Takes in a request id
+   * @return a response 200 if the process was successful
+   */
+  static approveRequest(req, res) {
+    pool.query(`UPDATE requests SET status_id = 2 WHERE id = ${req.params.id}`, (error, result) => {
+      if (error) {
+        return res.status(500).send('An error occured when approving the request');
+      }
+      if (result.rowCount > 0) {
+        return res.status(200).send('Request updated successfully');
+      }
+      return res.status(404).send('The specified request does not exist');
+    });
+  }
 }
 
 export default AdminController;
