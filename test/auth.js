@@ -15,7 +15,7 @@ describe('Authentication', () => {
         password: 'johndoe',
       };
       chai.request(app)
-        .post('/auth/signup')
+        .post('/api/v1/auth/signup')
         .send(user)
         .end((err, res) => {
           res.should.have.status(201);
@@ -30,7 +30,7 @@ describe('Authentication', () => {
         password: 'johndoe',
       };
       chai.request(app)
-        .post('/auth/login')
+        .post('/api/v1/auth/login')
         .send(details)
         .end((err, res) => {
           res.should.have.status(200);
@@ -43,7 +43,7 @@ describe('Authentication', () => {
         password: 'johndoe',
       };
       chai.request(app)
-        .post('/auth/login')
+        .post('/api/v1/auth/login')
         .send(details)
         .end((err, res) => {
           res.should.have.status(404);
@@ -56,7 +56,7 @@ describe('Authentication', () => {
         password: '12rfcas',
       };
       chai.request(app)
-        .post('/auth/login')
+        .post('/api/v1/auth/login')
         .send(details)
         .end((err, res) => {
           res.should.have.status(401);

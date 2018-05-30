@@ -18,9 +18,9 @@ app.use(bodyParser.json());
 // requestRoutes(app);
 
 // Register the routes in app
-app.use('/', adminRoutes);
-app.use('/api/v1', requestRoutes);
-app.use('/auth', authRoutes);
+app.use('/api/v1/users', requestRoutes);
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/requests', adminRoutes);
 
 // Start the server
 app.listen(port, () => {
