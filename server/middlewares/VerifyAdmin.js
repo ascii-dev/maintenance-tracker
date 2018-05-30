@@ -6,7 +6,7 @@ const VerifyAdmin = (req, res, next) => {
       return res.status(500).send('User can not be retrieved due to server error');
     }
     if (result.rowCount === 0) {
-      return res.status(404).send('A user with the email address could not be found');
+      return res.status(404).send('A user with the user id could not be found');
     }
 
     if (result.rows[0].is_admin === 0) {
