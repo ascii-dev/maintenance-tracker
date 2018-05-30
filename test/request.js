@@ -21,7 +21,7 @@ describe('Requests', () => {
     it('should get all user requests', (done) => {
       chai.request(app)
         .get('/api/v1/users/requests/')
-        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3MTYwNDk2LCJleHAiOjE1MjcyNDY4OTZ9.76WjBkFxaJw9GjoV5Q3ElAErjw1k6vW8QobpfkMIvXA')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3NDk0NTc1LCJleHAiOjE1Mjc1ODA5NzV9.AfEVJzvnL-OhvVYIGDgpNrmOiBuYW5XU7Q9bpx9f1uY')
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -40,7 +40,7 @@ describe('Requests', () => {
       };
       chai.request(app)
         .post('/api/v1/users/requests/')
-        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3MTYwNDk2LCJleHAiOjE1MjcyNDY4OTZ9.76WjBkFxaJw9GjoV5Q3ElAErjw1k6vW8QobpfkMIvXA')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3NDk0NTc1LCJleHAiOjE1Mjc1ODA5NzV9.AfEVJzvnL-OhvVYIGDgpNrmOiBuYW5XU7Q9bpx9f1uY')
         .send(data)
         .end((err, res) => {
           res.should.have.status(201);
@@ -58,7 +58,7 @@ describe('Requests', () => {
       };
       chai.request(app)
         .post('/api/v1/users/requests/')
-        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3MTYwNDk2LCJleHAiOjE1MjcyNDY4OTZ9.76WjBkFxaJw9GjoV5Q3ElAErjw1k6vW8QobpfkMIvXA')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3NDk0NTc1LCJleHAiOjE1Mjc1ODA5NzV9.AfEVJzvnL-OhvVYIGDgpNrmOiBuYW5XU7Q9bpx9f1uY')
         .send(data)
         .end((err, res) => {
           res.should.have.status(403);
@@ -73,7 +73,7 @@ describe('Requests', () => {
       const id = 1;
       chai.request(app)
         .get(`/api/v1/users/requests/${id}`)
-        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3MTYwNDk2LCJleHAiOjE1MjcyNDY4OTZ9.76WjBkFxaJw9GjoV5Q3ElAErjw1k6vW8QobpfkMIvXA')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3NDk0NTc1LCJleHAiOjE1Mjc1ODA5NzV9.AfEVJzvnL-OhvVYIGDgpNrmOiBuYW5XU7Q9bpx9f1uY')
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -86,7 +86,7 @@ describe('Requests', () => {
       const id = 1000;
       chai.request(app)
         .get(`/api/v1/users/requests/${id}`)
-        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3MTYwNDk2LCJleHAiOjE1MjcyNDY4OTZ9.76WjBkFxaJw9GjoV5Q3ElAErjw1k6vW8QobpfkMIvXA')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3NDk0NTc1LCJleHAiOjE1Mjc1ODA5NzV9.AfEVJzvnL-OhvVYIGDgpNrmOiBuYW5XU7Q9bpx9f1uY')
         .end((err, res) => {
           res.should.have.status(404);
           done();
@@ -105,6 +105,7 @@ describe('Requests', () => {
       };
       chai.request(app)
         .put(`/api/v1/users/requests/${id}`)
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3NDk0NTc1LCJleHAiOjE1Mjc1ODA5NzV9.AfEVJzvnL-OhvVYIGDgpNrmOiBuYW5XU7Q9bpx9f1uY')
         .send(data)
         .end((err, res) => {
           res.should.have.status(200);
@@ -123,17 +124,17 @@ describe('Requests', () => {
       };
       chai.request(app)
         .put(`/api/v1/users/requests/${id}`)
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3NDk0NTc1LCJleHAiOjE1Mjc1ODA5NzV9.AfEVJzvnL-OhvVYIGDgpNrmOiBuYW5XU7Q9bpx9f1uY')
         .send(data)
         .end((err, res) => {
-          res.should.have.status(400);
-          res.body.should.have.property('message').to.equals('Kindly fill in all required fields!');
+          res.should.have.status(403);
           done();
         });
     });
 
     // Test update request (return 404)
     it('should not update request if request id is not found', (done) => {
-      const id = 4;
+      const id = 1000;
       const data = {
         title: 'Faulty play station',
         type: 2,
@@ -141,36 +142,10 @@ describe('Requests', () => {
       };
       chai.request(app)
         .put(`/api/v1/users/requests/${id}`)
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTI3NDk0NTc1LCJleHAiOjE1Mjc1ODA5NzV9.AfEVJzvnL-OhvVYIGDgpNrmOiBuYW5XU7Q9bpx9f1uY')
         .send(data)
         .end((err, res) => {
           res.should.have.status(404);
-          res.body.should.have.property('message').to.equals('Request does not exist!');
-          done();
-        });
-    });
-  });
-
-  describe('/DELETE api/v1/users/requests/:id', () => {
-    // Test delete request (return 200)
-    it('should delete request if request id is found', (done) => {
-      const id = 1;
-      chai.request(app)
-        .delete(`/api/v1/users/requests/${id}`)
-        .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.have.property('message').to.equals('Request deleted successfully!');
-          done();
-        });
-    });
-
-    // Test update request (return 404)
-    it('should not update request if request id is not found', (done) => {
-      const id = 4;
-      chai.request(app)
-        .delete(`/api/v1/users/requests/${id}`)
-        .end((err, res) => {
-          res.should.have.status(404);
-          res.body.should.have.property('message').to.equals('Request does not exist!');
           done();
         });
     });

@@ -1,9 +1,11 @@
-import data from '../dummyData/index';
 import pool from '../config/connect';
 
-const { requests } = data;
 class RequestController {
-  // Get all requests fom data
+  /**
+   * Get all requests belonging to a user
+   * @param {string} token - Takes in a token string
+   * @return an object containing the requests if successful
+   */
   static getAllRequests(req, res) {
     pool.query(`SELECT * FROM requests WHERE user_id = '${req.userId}' ORDER BY id ASC`, (error, result) => {
       if (error) {
@@ -16,7 +18,12 @@ class RequestController {
     });
   }
 
-  // Get single user request
+  /**
+   * Get a single request a user has made
+   * @param {string} token - Takes in a token string
+   * @param {number} id - Takes in a request id
+   * @return an object containing the request if successful
+   */
   static getSingleRequest(req, res) {
     pool.query(`SELECT * FROM requests WHERE id = '${req.params.id}'`, (error, result) => {
       if (error) {
@@ -32,7 +39,14 @@ class RequestController {
     });
   }
 
-  // Create new request
+  /**
+   * Create a request
+   * @param {string} token - Takes in a token string
+   * @param {string} title - Title of the request to be created
+   * @param {string} description - A detailed description of the request to be created
+   * @param {number} type - The id of the type of request to be created
+   * @return an object containing the request that was just created if successful
+   */
   static createRequest(req, res) {
     if (req.body.title === '') {
       return res.status(403).send('Request title can not be empty');
@@ -58,41 +72,51 @@ class RequestController {
     return null;
   }
 
-  // Update a request
+  /**
+   * Update a request
+   * @param {number} id - The id of the request to be modified
+   * @param {string} token - Takes in a token string
+   * @param {string} title - Title of the request to be modified
+   * @param {string} description - A detailed description of the request to be modified
+   * @param {number} type - The id of the type of request to be modified
+   * @return an object containing the request that was just modified if successful
+   */
   static updateRequest(req, res) {
-    const findRequest = requests.find(request => request.id === parseInt(req.params.id, 10));
-    if (findRequest) {
-      if (req.body.title === '' || req.body.description === '' || req.body.type === '' || req.body.status === '') {
-        return res.status(400).json({
-          message: 'Kindly fill in all required fields!',
-        });
+    if (req.body.title === '') {
+      return res.status(403).send('Request title can not be empty');
+    }
+    if (req.body.description === '') {
+      return res.status(403).send('Request description can not be empty');
+    }
+    if (req.body.type === '') {
+      return res.status(403).send('Request type can not be empty');
+    }
+    pool.query(`SELECT * FROM requests WHERE id = '${req.params.id}'`, (error, result) => {
+      if (error) {
+        return res.status(500).send('The was an error when fetching the request');
       }
-      findRequest.title = req.body.title;
-      findRequest.type = req.body.type;
-      findRequest.description = req.body.description;
-      findRequest.status = req.body.status;
-
-      return res.status(200).json({
-        message: 'Request updated successfully!',
-      });
-    }
-    return res.status(404).json({
-      message: 'Request does not exist!',
+      if (result.rowCount === 0) {
+        return res.status(404).send('The request could not be found');
+      }
+      if (req.userId === result.rows[0].user_id) {
+        pool.query(`UPDATE requests SET title = '${req.body.title}', description = '${req.body.description}', type = ${req.body.type} WHERE id = ${req.params.id} RETURNING *`, (err, response) => {
+          if (err) {
+            return res.status(500).send('There was an error when saving the request');
+          }
+          return res.status(200).json({
+            title: response.rows[0].title,
+            type: response.rows[0].type,
+            description: response.rows[0].description,
+            creator: response.rows[0].user_id,
+            message: 'Request updated successfully!',
+          });
+        });
+      } else {
+        return res.status(401).send('You are not authorized to modify the request');
+      }
+      return null;
     });
-  }
-
-  // Delete a request
-  static deleteRequest(req, res) {
-    const findRequest = requests.find(request => request.id === parseInt(req.params.id, 10));
-    if (findRequest) {
-      requests.splice(findRequest.id - 1, 1);
-      return res.status(200).json({
-        message: 'Request deleted successfully!',
-      });
-    }
-    return res.status(404).json({
-      message: 'Request does not exist!',
-    });
+    return null;
   }
 }
 
