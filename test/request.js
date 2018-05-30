@@ -126,7 +126,7 @@ describe('Requests', () => {
 
     // Test update request (return 404)
     it('should not update request if request id is not found', (done) => {
-      const id = 1000;
+      const id = 0;
       const data = {
         title: 'Faulty play station',
         type: 2,

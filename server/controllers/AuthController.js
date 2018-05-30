@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import config from '../config/config';
 import pool from '../config/connect';
+import authHelper from '../helpers/authHelper';
 
 
 class AuthController {
@@ -13,19 +14,14 @@ class AuthController {
    * @return an object containing the user account details and an authentication token if successful
    */
   static signup(req, res) {
-    if (req.body.name === '') {
-      return res.status(400).send('Name can not be blank');
-    }
-    if (req.body.email === '') {
-      return res.status(400).send('Email can not be blank');
-    }
-    if (req.body.password === '') {
-      return res.status(400).send('Password can not be blank');
+    const error = authHelper('signup', req);
+    if (error !== undefined) {
+      return res.status(400).send(error);
     }
     const hashedPassword = bcrypt.hashSync(req.body.password, 8);
-    pool.query(`INSERT INTO users (name, email, password) values ('${req.body.name}', '${req.body.email}', '${hashedPassword}') RETURNING *`, (error, result) => {
-      if (error) {
-        return res.status(500).send('There was a problem registering the user');
+    pool.query(`INSERT INTO users (name, email, password) values ('${req.body.name}', '${req.body.email}', '${hashedPassword}') RETURNING *`, (err, result) => {
+      if (err) {
+        return res.status(500).send('An error occured while processing this request');
       }
       // Create a token
       const token = jwt.sign({ id: result.rows[0].id }, config.jwtSecret, { expiresIn: 86400 });
@@ -47,20 +43,17 @@ class AuthController {
    * @return an object containing the request and an authentication token if successful
    */
   static login(req, res) {
-    if (req.body.email === '') {
-      return res.status(400).send('Email can not be blank');
-    }
-    if (req.body.password === '') {
-      return res.status(400).send('Password can not be blank');
+    const error = authHelper('login', req);
+    if (error !== undefined) {
+      return error;
     }
     pool.query(`SELECT * FROM users WHERE email = '${req.body.email}'`, (err, result) => {
       if (err) {
-        return res.status(500).send('User can not be retrieved due to server error');
+        return res.status(500).send('An error occured while processing this request');
       }
       if (result.rowCount === 0) {
-        return res.status(404).send('A user with the email address could not be found');
+        return res.status(404).send('The user could not be found');
       }
-
       const validPassword = bcrypt.compareSync(req.body.password, result.rows[0].password);
       if (!validPassword) {
         return res.status(401).send('An invalid password was entered');

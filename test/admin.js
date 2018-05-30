@@ -11,7 +11,7 @@ describe('Admin Requests', () => {
   describe('GET /requests', () => {
     it('should get all requests for the admin', (done) => {
       chai.request(app)
-        .get('/requests/')
+        .get('/api/v1/requests/')
         .set('x-access-token', adminToken)
         .end((err, res) => {
           res.should.have.status(200);
@@ -25,7 +25,7 @@ describe('Admin Requests', () => {
     it('should get the request whose id is 1', (done) => {
       const id = 1;
       chai.request(app)
-        .get(`/requests/${id}`)
+        .get(`/api/v1/requests/${id}`)
         .set('x-access-token', adminToken)
         .end((err, res) => {
           res.should.have.status(200);
@@ -36,9 +36,9 @@ describe('Admin Requests', () => {
 
     // Test GET single request (return 404)
     it('should not get request when the id supplied does not exist', (done) => {
-      const id = 100000;
+      const id = 0;
       chai.request(app)
-        .get(`/requests/${id}`)
+        .get(`/api/v1/requests/${id}`)
         .set('x-access-token', adminToken)
         .end((err, res) => {
           res.should.have.status(404);
@@ -52,7 +52,7 @@ describe('Admin Requests', () => {
     it('should get the user whose id is 1', (done) => {
       const id = 1;
       chai.request(app)
-        .get(`/requests/users/${id}`)
+        .get(`/api/v1/requests/users/${id}`)
         .set('x-access-token', adminToken)
         .end((err, res) => {
           res.should.have.status(200);
@@ -64,7 +64,7 @@ describe('Admin Requests', () => {
     it('should not get user when the id supplied does not exist', (done) => {
       const id = 100000;
       chai.request(app)
-        .get(`/requests/users/${id}`)
+        .get(`/api/v1/requests/users/${id}`)
         .set('x-access-token', adminToken)
         .end((err, res) => {
           res.should.have.status(404);
@@ -77,7 +77,7 @@ describe('Admin Requests', () => {
     it('should approve the request whose id is 1', (done) => {
       const id = 1;
       chai.request(app)
-        .put(`/requests/${id}/approve`)
+        .put(`/api/v1/requests/${id}/approve`)
         .set('x-access-token', adminToken)
         .end((err, res) => {
           res.should.have.status(200);
@@ -89,7 +89,7 @@ describe('Admin Requests', () => {
     it('should not approve request when the id supplied does not exist', (done) => {
       const id = 100000;
       chai.request(app)
-        .put(`/requests/${id}/approve`)
+        .put(`/api/v1/requests/${id}/approve`)
         .set('x-access-token', adminToken)
         .end((err, res) => {
           res.should.have.status(404);
@@ -102,7 +102,7 @@ describe('Admin Requests', () => {
     it('should resolve the request whose id is 2', (done) => {
       const id = 2;
       chai.request(app)
-        .put(`/requests/${id}/resolve`)
+        .put(`/api/v1/requests/${id}/resolve`)
         .set('x-access-token', adminToken)
         .end((err, res) => {
           res.should.have.status(200);
@@ -114,7 +114,7 @@ describe('Admin Requests', () => {
     it('should not resolve request when the id supplied does not exist', (done) => {
       const id = 100000;
       chai.request(app)
-        .put(`/requests/${id}/resolve`)
+        .put(`/api/v1/requests/${id}/resolve`)
         .set('x-access-token', adminToken)
         .end((err, res) => {
           res.should.have.status(404);
@@ -127,7 +127,7 @@ describe('Admin Requests', () => {
     it('should disapprove the request whose id is 1', (done) => {
       const id = 1;
       chai.request(app)
-        .put(`/requests/${id}/disapprove`)
+        .put(`/api/v1/requests/${id}/disapprove`)
         .set('x-access-token', adminToken)
         .end((err, res) => {
           res.should.have.status(200);
@@ -139,7 +139,7 @@ describe('Admin Requests', () => {
     it('should not disapprove request when the id supplied does not exist', (done) => {
       const id = 100000;
       chai.request(app)
-        .put(`/requests/${id}/disapprove`)
+        .put(`/api/v1/requests/${id}/disapprove`)
         .set('x-access-token', adminToken)
         .end((err, res) => {
           res.should.have.status(404);
