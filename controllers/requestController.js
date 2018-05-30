@@ -1,13 +1,28 @@
+import pg from 'pg';
 import data from '../dummyData/index';
+import config from '../config/database';
 
 const { requests } = data;
-
+const pool = new pg.Pool(config);
 class RequestController {
-  // Get all requests from data
+  // Get all requests fom data
   static getAllRequests(req, res) {
-    return res.status(200).json({
-      allRequests: requests,
-      message: 'All requests by user',
+    pool.connect((err, client, done) => {
+      if (err) {
+        done();
+        return res.status(500).json({ success: false, data: err });
+      }
+      client.query('SELECT * FROM requests ORDER BY id ASC', (error, result) => {
+        done();
+        if (error) {
+          res.status(400).send(error);
+        }
+        return res.status(200).json({
+          allRequests: result.rows,
+          message: 'All requests by user',
+        });
+      });
+      return null;
     });
   }
 
