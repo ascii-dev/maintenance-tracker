@@ -3,6 +3,9 @@
     "lcov",
     "text-summary"
   ],
+  "exclude": [
+    "frontend",
+  ]
   "require": [
     "babel-register"
   ],
