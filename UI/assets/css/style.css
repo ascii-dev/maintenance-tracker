@@ -48,6 +48,10 @@ a {
   color: #fff;
 }
 
+.blue-text {
+  color: blue;
+}
+
 .landing-header {
   background: url('../images/bg.jpg') center no-repeat;
   height: 500px;
@@ -113,6 +117,13 @@ a {
     padding: 0.5rem 1rem;
     font-size: 1.25rem;
     border-radius: 0.3rem;
+}
+
+.btn-lg-2 {
+  padding: 1rem 2rem;
+  border-radius: 0.3rem;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .btn-full {
@@ -192,6 +203,10 @@ textarea {
 
 .pt-10 {
     padding-top: 10px;
+}
+
+.p-25 {
+  padding: 25px;
 }
 
 .mt-10 {
