@@ -10,62 +10,64 @@
     <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
 <body>
-    <header class="navigation orange-bg">
-        <div class="small-container div-center">
-            <div class="flex space-between pt-10">
-                <div class="logo">
-                    <a href="index.html" class="logo-text white-text">MT</a>
-                </div>
-                <nav class="main-nav">
-                    <ul class="flex">
-                        <li>
-                            <a href="signup.html" class="white-text">Sign Up</a>
-                        </li>
-                        <li>
-                            <a href="login.html" class="white-text">Login</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>            
-        </div>
-    </header>
-    <section class="main">
-        <div class="container div-center">
-            <div class="div-center">
-                    <h1 class="intro text-center">Sign Up</h1>
-            </div>
-            <div class="flex row">
-                <div class="col"></div>
-                <div class="col">
-                    <div class="card div-center">
-                        <form action="dashboard.html" id="signup-form" method="POST">
-                            <div class="form-group">
-                                <label for="name">Full name</label>
-                                <input type="text" name="name" id="name" class="form-control" placeholder="Enter your full name" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="text" name="email" id="email" class="form-control" placeholder="Enter your email" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label for="confirm_password">Confirm Password</label>
-                                <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Enter your password again" required="required">
-                            </div>
-                            <div id="errors"></div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-lg btn-green">Sign Up</button>
-                            </div>
-                        </form>
+    <div class="vh85">
+        <header class="navigation orange-bg">
+            <div class="container div-center">
+                <div class="flex space-between pt-10">
+                    <div class="logo">
+                        <a href="index.html" class="logo-text white-text">MT</a>
                     </div>
-                </div>
-                <div class="col"></div>
+                    <nav class="main-nav">
+                        <ul class="flex">
+                            <li>
+                                <a class="btn btn-green text-center" href="signup.html">Sign Up</a>
+                            </li>
+                            <li>
+                                <a class="btn btn-white text-center" href="login.html">Login</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>            
             </div>
-        </div>                
-    </section>
+        </header>
+        <section class="main">
+            <div class="container div-center">
+                <div class="div-center">
+                        <h1 class="intro text-center">Sign Up</h1>
+                </div>
+                <div class="flex row">
+                    <div class="col"></div>
+                    <div class="col">
+                        <div class="card div-center">
+                            <form action="dashboard.html" id="signup-form" method="POST">
+                                <div class="form-group">
+                                    <label for="name">Full name</label>
+                                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter your full name" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="text" name="email" id="email" class="form-control" placeholder="Enter your email" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirm_password">Confirm Password</label>
+                                    <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Enter your password again" required="required">
+                                </div>
+                                <div id="errors"></div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-lg btn-green">Sign Up</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>                
+        </section>
+    </div>
     <footer class="footer orange-bg">
       <div class="container div-center flex space-between pt-10">
           <div>
