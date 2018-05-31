@@ -2,6 +2,8 @@
 .DS_Store*
 Icon?
 ._*
+.env
+dist
 
 # Windows
 Thumbs.db
