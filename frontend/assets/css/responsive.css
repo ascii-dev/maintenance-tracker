@@ -1,0 +1,10 @@
+@media only screen and (max-width: 800px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .col {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
