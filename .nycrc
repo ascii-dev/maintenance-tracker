@@ -4,7 +4,7 @@
     "text-summary"
   ],
   "exclude": [
-    "frontend",
+    "frontend"
   ],
   "require": [
     "babel-register"
