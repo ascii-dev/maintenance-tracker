@@ -1,0 +1,88 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "1.0.0",
+		"title": "Maintenance Tracker API",
+		"description": "An API that that provides users with the ability to reach out to operations or repairs department regarding repair or maintenance requests and monitor the status of their request"
+	},
+	"schemes": [
+		"https"
+	],
+	"host": "ascii-mt.herokuapp.com",
+	"basePath": "/api/v1",
+	"paths": {
+		"/auth/login": {
+			"post": {
+				"summary": "Login the API to get authentication token",
+				"description": "Returns an authentication token on success.",
+				"responses": {
+					"200": {
+						"description": "Login successful, return user details and token",
+						"schema": {
+							"type": "object",
+							"items": {
+								"required": [
+									"email",
+									"password"
+								],
+								"properties": {
+									"email": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					},
+          "400": {
+            "description": "Bad Request"
+          },
+					"401": {
+						"description": "Email or password incorrect"
+					},
+					"500": {
+						"description": "Server error"
+					}
+				}
+      },
+      "/auth/signup": {
+        "post": {
+          "summary": "Create an account on the API",
+          "description": "Returns an authentication token on success.",
+          "parameters": [
+            "name",
+            "username",
+            "password"
+          ],
+          "responses": {
+            "201": {
+              "description": "Signup successful, return user details and token",
+              "schema": {
+                "type": "object",
+                "items": {
+                  "required": [
+                    "email",
+                    "password"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request"
+            },
+            "500": {
+              "description": "Server error"
+            }
+          }
+        }
+      }
+		}
+	}
+}

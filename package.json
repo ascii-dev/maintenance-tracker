@@ -26,7 +26,8 @@
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.2.1",
-    "pg": "^7.4.3"
+    "pg": "^7.4.3",
+    "swagger-ui-express": "^3.0.9"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
