@@ -76,10 +76,10 @@ This project is licensed under the MIT License
 [Samuel Afolaranmi](https://asciidev.com.ng)
 
 ## Acknowledgements
-[Andela](https://andela.com)
-[Scotch.io](https://scotch.io)
-[PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-[FreeCodeCamp](https://medium.freecodecamp.com)
+[Andela](https://andela.com)<br>
+[Scotch.io](https://scotch.io)<br>
+[PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)<br>
+[FreeCodeCamp](https://medium.freecodecamp.com)<br>
 [Google](https://google.com)
 
 ## Acces running application
