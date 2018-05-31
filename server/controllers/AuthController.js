@@ -45,18 +45,15 @@ class AuthController {
   static login(req, res) {
     const error = authHelper('login', req);
     if (error !== undefined) {
-      return error;
+      return res.status(400).send(error);
     }
     pool.query(`SELECT * FROM users WHERE email = '${req.body.email}'`, (err, result) => {
       if (err) {
         return res.status(500).send('An error occured while processing this request');
       }
-      if (result.rowCount === 0) {
-        return res.status(404).send('The user could not be found');
-      }
       const validPassword = bcrypt.compareSync(req.body.password, result.rows[0].password);
-      if (!validPassword) {
-        return res.status(401).send('An invalid password was entered');
+      if (result.rowCount === 0 || !validPassword) {
+        return res.status(401).send('Email or password incorrect');
       }
 
       const token = jwt.sign({ id: result.rows[0].id }, config.jwtSecret, { expiresIn: 86400 });
