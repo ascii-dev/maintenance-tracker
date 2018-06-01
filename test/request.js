@@ -53,7 +53,7 @@ describe('Requests', () => {
         .set('x-access-token', userToken)
         .send(data)
         .end((err, res) => {
-          res.should.have.status(403);
+          res.should.have.status(400);
           done();
         });
     });
@@ -119,7 +119,7 @@ describe('Requests', () => {
         .set('x-access-token', userToken)
         .send(data)
         .end((err, res) => {
-          res.should.have.status(403);
+          res.should.have.status(400);
           done();
         });
     });

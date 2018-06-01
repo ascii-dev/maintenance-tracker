@@ -26,9 +26,6 @@ class RequestController {
    * @return an object containing the request if successful
    */
   static getSingleRequest(req, res) {
-    // if (typeof req.id !== 'number') {
-    //   return res.status(400).send('The id passed should be a number');
-    // }
     pool.query(`SELECT * FROM requests WHERE id = '${req.params.id}'`, (err, result) => {
       if (err) {
         return res.status(500).send('An error occured while processing this request');
@@ -55,7 +52,7 @@ class RequestController {
   static createRequest(req, res) {
     const error = requestHelper(req);
     if (error !== undefined) {
-      return res.status(403).send(error);
+      return res.status(400).send(error);
     }
     pool.query(`INSERT INTO requests (title, type, description, user_id) values ('${req.body.title}', '${req.body.type}', '${req.body.description}', ${req.userId}) RETURNING *`, (err, result) => {
       if (err) {
@@ -87,7 +84,7 @@ class RequestController {
   static updateRequest(req, res) {
     const error = requestHelper(req);
     if (error !== undefined) {
-      return res.status(403).send(error);
+      return res.status(400).send(error);
     }
     pool.query(`SELECT * FROM requests WHERE id = '${req.params.id}'`, (queryError, result) => {
       if (queryError) {
