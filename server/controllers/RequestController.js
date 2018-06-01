@@ -28,7 +28,7 @@ class RequestController {
   static getSingleRequest(req, res) {
     pool.query(`SELECT * FROM requests WHERE id = '${req.params.id}'`, (err, result) => {
       if (err) {
-        return res.status(500).send('An error occured while processing this request');
+        return res.status(400).send('The request ID must be a number');
       }
       if (result.rowCount === 0) {
         return res.status(404).send('The user could not be found');
@@ -88,7 +88,7 @@ class RequestController {
     }
     pool.query(`SELECT * FROM requests WHERE id = '${req.params.id}'`, (queryError, result) => {
       if (queryError) {
-        return res.status(500).send('An error occured while processing this request');
+        return res.status(400).send('The request ID must be a number');
       }
       if (result.rowCount === 0) {
         return res.status(404).send('The user could not be found');

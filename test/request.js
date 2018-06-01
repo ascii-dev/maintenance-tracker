@@ -61,7 +61,7 @@ describe('Requests', () => {
 
   describe('GET api/v1/requests/:id', () => {
     // Test GET single request (return 200)
-    it('should get the request whose id is 1', (done) => {
+    it('should get the request whose id exists', (done) => {
       const id = 1;
       chai.request(app)
         .get(`/api/v1/users/requests/${id}`)
@@ -81,6 +81,18 @@ describe('Requests', () => {
         .set('x-access-token', userToken)
         .end((err, res) => {
           res.should.have.status(404);
+          done();
+        });
+    });
+
+    // Test GET single request (return 404)
+    it('should not get user request when request id is not a number', (done) => {
+      const id = 'name';
+      chai.request(app)
+        .get(`/api/v1/users/requests/${id}`)
+        .set('x-access-token', userToken)
+        .end((err, res) => {
+          res.should.have.status(400);
           done();
         });
     });

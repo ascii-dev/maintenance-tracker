@@ -27,7 +27,7 @@ class AdminController {
   static getSingleRequest(req, res) {
     pool.query(`SELECT * FROM requests WHERE id = ${req.params.id}`, (err, result) => {
       if (err) {
-        return res.status(500).send('An error occured while processing this request');
+        return res.status(400).send('The request ID must be a number');
       }
       if (result.rowCount === 0) {
         return res.status(404).send('The request could not be found');
@@ -53,7 +53,7 @@ class AdminController {
   static getUserDetails(req, res) {
     pool.query(`SELECT * FROM users WHERE id = ${req.params.id}`, (err, user) => {
       if (err) {
-        return res.status(500).send('An error occured while processing this request');
+        return res.status(400).send('The user ID must be a number');
       }
       if (user.rowCount === 0) {
         return res.status(404).send('The request could not be found');
@@ -74,7 +74,7 @@ class AdminController {
   static approveRequest(req, res) {
     pool.query(`UPDATE requests SET status_id = 2 WHERE id = ${req.params.id}`, (err, result) => {
       if (err) {
-        return res.status(500).send('An error occured while processing this request');
+        return res.status(400).send('The request ID must be a number');
       }
       if (result.rowCount === 0) {
         return res.status(404).send('The request could not be found');
@@ -92,7 +92,7 @@ class AdminController {
   static disapproveRequest(req, res) {
     pool.query(`UPDATE requests SET status_id = 3 WHERE id = ${req.params.id} RETURNING *`, (err, result) => {
       if (err) {
-        return res.status(500).send('An error occured while processing this request');
+        return res.status(400).send('The request ID must be a number');
       }
       if (result.rowCount === 0) {
         return res.status(404).send('The request could not be found');
@@ -110,7 +110,7 @@ class AdminController {
   static resolveRequest(req, res) {
     pool.query(`UPDATE requests SET status_id = 4 WHERE id = ${req.params.id}`, (err, result) => {
       if (err) {
-        return res.status(500).send('An error occured while processing this request');
+        return res.status(400).send('The request ID must be a number');
       }
       if (result.rowCount === 0) {
         return res.status(404).send('The request could not be found');
