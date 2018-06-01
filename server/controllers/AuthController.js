@@ -18,8 +18,8 @@ class AuthController {
     if (error !== undefined) {
       return res.status(400).send(error);
     }
-    const hashedPassword = bcrypt.hashSync(req.body.password, 8);
-    pool.query(`INSERT INTO users (name, email, password) values ('${req.body.name}', '${req.body.email}', '${hashedPassword}') RETURNING *`, (err, result) => {
+    const hashedPassword = bcrypt.hashSync(req.body.password.trim(), 8);
+    pool.query(`INSERT INTO users (name, email, password) values ('${req.body.name.trim()}', '${req.body.email.trim()}', '${hashedPassword}') RETURNING *`, (err, result) => {
       if (err) {
         return res.status(500).send('An error occured while processing this request');
       }
@@ -51,8 +51,11 @@ class AuthController {
       if (err) {
         return res.status(500).send('An error occured while processing this request');
       }
-      const validPassword = bcrypt.compareSync(req.body.password, result.rows[0].password);
-      if (result.rowCount === 0 || !validPassword) {
+      if (result.rowCount === 0) {
+        return res.status(401).send('Email or password incorrect');
+      }
+      const validPassword = bcrypt.compareSync(req.body.password.trim(), result.rows[0].password);
+      if (!validPassword) {
         return res.status(401).send('Email or password incorrect');
       }
 

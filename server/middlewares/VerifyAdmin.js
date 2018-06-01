@@ -6,11 +6,11 @@ const VerifyAdmin = (req, res, next) => {
       return res.status(500).send('User can not be retrieved due to server error');
     }
     if (result.rowCount === 0) {
-      return res.status(404).send('A user with the user id could not be found');
+      return res.status(404).send('User could not be found');
     }
 
     if (result.rows[0].is_admin === 0) {
-      return res.status(401).send('User is not authorized to access the endpoint');
+      return res.status(403).send('User is not authorized to access the endpoint');
     }
     next();
     return null;
