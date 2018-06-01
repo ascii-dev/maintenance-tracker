@@ -20,6 +20,43 @@ describe('Requests', () => {
           done();
         });
     });
+
+    // Test GET single request (return 200)
+    it('should get the request when id exists', (done) => {
+      const id = 1;
+      chai.request(app)
+        .get(`/api/v1/users/requests/${id}`)
+        .set('x-access-token', userToken)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
+
+    // Test GET single request (return 404)
+    it('should not get user request when request id does not exist', (done) => {
+      const id = 1000;
+      chai.request(app)
+        .get(`/api/v1/users/requests/${id}`)
+        .set('x-access-token', userToken)
+        .end((err, res) => {
+          res.should.have.status(404);
+          done();
+        });
+    });
+
+    // Test GET single request (return 404)
+    it('should not get user request when request id is not a number', (done) => {
+      const id = 'name';
+      chai.request(app)
+        .get(`/api/v1/users/requests/${id}`)
+        .set('x-access-token', userToken)
+        .end((err, res) => {
+          res.should.have.status(400);
+          done();
+        });
+    });
   });
 
   describe('/POST api/v1/users/requests', () => {
@@ -52,45 +89,6 @@ describe('Requests', () => {
         .post('/api/v1/users/requests/')
         .set('x-access-token', userToken)
         .send(data)
-        .end((err, res) => {
-          res.should.have.status(400);
-          done();
-        });
-    });
-  });
-
-  describe('GET api/v1/requests/:id', () => {
-    // Test GET single request (return 200)
-    it('should get the request whose id exists', (done) => {
-      const id = 1;
-      chai.request(app)
-        .get(`/api/v1/users/requests/${id}`)
-        .set('x-access-token', userToken)
-        .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.be.a('object');
-          done();
-        });
-    });
-
-    // Test GET single request (return 404)
-    it('should not get user request when request id does not exist', (done) => {
-      const id = 1000;
-      chai.request(app)
-        .get(`/api/v1/users/requests/${id}`)
-        .set('x-access-token', userToken)
-        .end((err, res) => {
-          res.should.have.status(404);
-          done();
-        });
-    });
-
-    // Test GET single request (return 404)
-    it('should not get user request when request id is not a number', (done) => {
-      const id = 'name';
-      chai.request(app)
-        .get(`/api/v1/users/requests/${id}`)
-        .set('x-access-token', userToken)
         .end((err, res) => {
           res.should.have.status(400);
           done();
