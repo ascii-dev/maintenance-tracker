@@ -122,7 +122,7 @@ class RequestController {
   static deleteRequest(req, res) {
     pool.query(`SELECT * FROM requests WHERE id = '${req.params.id}'`, (queryError, result) => {
       if (queryError) {
-        return res.send(400).json({ message: 'The request ID must be a number' });
+        return res.status(400).json({ message: 'The request ID must be a number' });
       }
       if (result.rowCount === 0) {
         return res.status(404).send({ message: 'The request could not be found' });
