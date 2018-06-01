@@ -1,6 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server/server';
+import pool from '../server/config/connect';
 
 chai.use(chaiHttp);
 chai.should();
@@ -146,6 +147,39 @@ describe('Requests', () => {
         .put(`/api/v1/users/requests/${id}`)
         .set('x-access-token', userToken)
         .send(data)
+        .end((err, res) => {
+          res.should.have.status(404);
+          done();
+        });
+    });
+  });
+
+  describe('/DELETE api/v1/users/requests/:id', () => {
+    let reqId;
+    before((done) => {
+      pool.query('SELECT * FROM requests ORDER BY id DESC', (err, res) => {
+        const { id } = res.rows[0];
+        reqId = id;
+      });
+      done();
+    });
+    // Test create new request (return 201)
+    it('should delete a request when the id exists', (done) => {
+      chai.request(app)
+        .delete(`/api/v1/users/requests/${reqId}`)
+        .set('x-access-token', userToken)
+        .end((err, res) => {
+          res.should.have.status(200);
+          done();
+        });
+    });
+
+    // Test create new request (return 400)
+    it('should not delete a request when the id does not exist', (done) => {
+      const requestid = 0;
+      chai.request(app)
+        .delete(`/api/v1/users/requests/${requestid}`)
+        .set('x-access-token', userToken)
         .end((err, res) => {
           res.should.have.status(404);
           done();
