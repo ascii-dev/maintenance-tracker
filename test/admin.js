@@ -19,10 +19,9 @@ describe('Admin Requests', () => {
           done();
         });
     });
-  });
-  describe('GET requests/:id', () => {
+
     // Test GET single request (return 200)
-    it('should get the request whose id exists', (done) => {
+    it('should get the request when id exists', (done) => {
       const id = 1;
       chai.request(app)
         .get(`/api/v1/requests/${id}`)
@@ -61,7 +60,7 @@ describe('Admin Requests', () => {
 
   describe('GET requests/users/:id', () => {
     // Test GET single request (return 200)
-    it('should get the user whose id is 1', (done) => {
+    it('should get the user when id exists', (done) => {
       const id = 1;
       chai.request(app)
         .get(`/api/v1/requests/users/${id}`)
@@ -84,9 +83,10 @@ describe('Admin Requests', () => {
         });
     });
   });
+
   describe('PUT requests/:id/approve', () => {
     // Test PUT approve request (return 200)
-    it('should approve the request whose id is 1', (done) => {
+    it('should approve the request when id exists', (done) => {
       const id = 1;
       chai.request(app)
         .put(`/api/v1/requests/${id}/approve`)
@@ -109,9 +109,10 @@ describe('Admin Requests', () => {
         });
     });
   });
+
   describe('PUT requests/:id/resolve', () => {
     // Test PUT resolve request (return 200)
-    it('should resolve the request whose id is 2', (done) => {
+    it('should resolve the request when id exists', (done) => {
       const id = 2;
       chai.request(app)
         .put(`/api/v1/requests/${id}/resolve`)
@@ -134,9 +135,10 @@ describe('Admin Requests', () => {
         });
     });
   });
+
   describe('PUT requests/:id/disapprove', () => {
     // Test PUT approve request (return 200)
-    it('should disapprove the request whose id is 1', (done) => {
+    it('should disapprove the request when id exists', (done) => {
       const id = 1;
       chai.request(app)
         .put(`/api/v1/requests/${id}/disapprove`)
