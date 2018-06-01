@@ -250,3 +250,7 @@ textarea {
     height: 60px;
     margin-bottom: 0px;
 }
+
+.authBg {
+  background: url('../images/bg.jpg') center no-repeat;
+}
