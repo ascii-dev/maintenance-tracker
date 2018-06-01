@@ -51,8 +51,11 @@ class AuthController {
       if (err) {
         return res.status(500).send('An error occured while processing this request');
       }
+      if (result.rowCount === 0) {
+        return res.status(401).send('Email or password incorrect');
+      }
       const validPassword = bcrypt.compareSync(req.body.password, result.rows[0].password);
-      if (result.rowCount === 0 || !validPassword) {
+      if (!validPassword) {
         return res.status(401).send('Email or password incorrect');
       }
 
