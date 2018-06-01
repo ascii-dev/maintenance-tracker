@@ -158,7 +158,7 @@ describe('Requests', () => {
     let reqId;
     before((done) => {
       pool.query('SELECT * FROM requests ORDER BY id DESC', (err, res) => {
-        const { id } = res.rows[0];
+        const { id } = res.rows[0].id;
         reqId = id;
       });
       done();
