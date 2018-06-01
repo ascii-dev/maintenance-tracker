@@ -27,7 +27,7 @@ describe('Requests', () => {
     it('should create a new request if required fields are entered', (done) => {
       const data = {
         title: 'Faulty play station',
-        type: 2,
+        type: 'repair',
         description: 'My play station 4 does not boot any more',
       };
       chai.request(app)
@@ -45,7 +45,7 @@ describe('Requests', () => {
     it('should not create a new request if required fields are empty', (done) => {
       const data = {
         title: '',
-        type: 2,
+        type: 'maintenance',
         description: '',
       };
       chai.request(app)
@@ -92,7 +92,7 @@ describe('Requests', () => {
       const id = 1;
       const data = {
         title: 'Faulty play station',
-        type: 2,
+        type: 'maintenance',
         description: 'My play station 4 does not boot any more',
       };
       chai.request(app)
@@ -111,7 +111,7 @@ describe('Requests', () => {
       const id = 1;
       const data = {
         title: '',
-        type: 2,
+        type: 'repair',
         description: '',
       };
       chai.request(app)
@@ -129,7 +129,7 @@ describe('Requests', () => {
       const id = 0;
       const data = {
         title: 'Faulty play station',
-        type: 2,
+        type: 'maintenance',
         description: 'My play station 4 does not boot any more',
       };
       chai.request(app)
