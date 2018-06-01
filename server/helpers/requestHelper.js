@@ -8,6 +8,8 @@ const requestHelper = (req) => {
   }
   if (req.body.type === '' || req.body.type === undefined) {
     error = 'Request type can not be blank';
+  } else if (!(req.body.type.trim() === 'maintenance' || req.body.type.trim() === 'repair')) {
+    error = 'Request type can only be maintenance or repair';
   }
   return error;
 };

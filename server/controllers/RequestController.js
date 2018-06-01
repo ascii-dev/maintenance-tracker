@@ -94,9 +94,9 @@ class RequestController {
         return res.status(404).send('The user could not be found');
       }
       if (req.userId === result.rows[0].user_id) {
-        pool.query(`UPDATE requests SET title = '${req.body.title}', description = '${req.body.description}', type = ${req.body.type} WHERE id = ${req.params.id} RETURNING *`, (err, response) => {
+        pool.query(`UPDATE requests SET title = '${req.body.title}', description = '${req.body.description}', type = '${req.body.type}' WHERE id = ${req.params.id} RETURNING *`, (err, response) => {
           if (err) {
-            return res.status(500).send('An error occured while processing this request');
+            return res.status(500).send('An error occured while processing this request inner');
           }
           return res.status(200).json({
             title: response.rows[0].title,
