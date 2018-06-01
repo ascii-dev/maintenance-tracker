@@ -26,6 +26,9 @@ class RequestController {
    * @return an object containing the request if successful
    */
   static getSingleRequest(req, res) {
+    // if (typeof req.id !== 'number') {
+    //   return res.status(400).send('The id passed should be a number');
+    // }
     pool.query(`SELECT * FROM requests WHERE id = '${req.params.id}'`, (err, result) => {
       if (err) {
         return res.status(500).send('An error occured while processing this request');
@@ -38,6 +41,7 @@ class RequestController {
         message: 'Single request',
       });
     });
+    return null;
   }
 
   /**

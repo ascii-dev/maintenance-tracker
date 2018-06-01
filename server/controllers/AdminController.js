@@ -41,6 +41,7 @@ class AdminController {
         created_at: result.rows[0].created_at,
       });
     });
+    return null;
   }
 
   /**
