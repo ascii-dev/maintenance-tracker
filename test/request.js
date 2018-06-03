@@ -8,6 +8,12 @@ chai.should();
 
 const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTI3NjI2NDQ0fQ.FfISUHBFjNMj0Ot3OZ49mqgPOwm03e7fyPd5bLq8d0w';
 
+after((done) => {
+  pool.query('TRUNCATE users RESTART IDENTITY CASCADE');
+  pool.query('TRUNCATE requests RESTART IDENTITY CASCADE');
+  done();
+});
+
 describe('Requests', () => {
   describe('/GET api/v1/users/requests', () => {
     // Test GET all requests
@@ -155,18 +161,11 @@ describe('Requests', () => {
   });
 
   describe('/DELETE api/v1/users/requests/:id', () => {
-    let reqId;
-    before((done) => {
-      pool.query('SELECT * FROM requests ORDER BY id DESC', (err, res) => {
-        const { id } = res.rows[0].id;
-        reqId = id;
-      });
-      done();
-    });
     // Test create new request (return 201)
     it('should delete a request when the id exists', (done) => {
+      const id = 3;
       chai.request(app)
-        .delete(`/api/v1/users/requests/${reqId}`)
+        .delete(`/api/v1/users/requests/${id}`)
         .set('x-access-token', userToken)
         .end((err, res) => {
           res.should.have.status(200);

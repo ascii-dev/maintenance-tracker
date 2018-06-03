@@ -62,6 +62,7 @@ class RequestController {
         return res.status(404).send('The user could not be found');
       }
       return res.status(201).json({
+        id: result.rows[0].id,
         title: result.rows[0].title,
         type: result.rows[0].type,
         description: result.rows[0].description,

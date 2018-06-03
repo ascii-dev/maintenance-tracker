@@ -1,12 +1,46 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server/server';
+import pool from '../server/config/connect';
 
 chai.use(chaiHttp);
 chai.should();
 
 const adminToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTI3NjI2MzMwfQ.4fF3TRrz3CkmgMy0rQBIkOXdvxc4S1iWh8XfRlZCbVE';
 
+before((done) => {
+  pool.query('INSERT INTO users (name, email, password, is_admin) VALUES (\'Samuel Afolaranmi\', \'sammysgame.dev@gmail.com\', \'$2a$08$Ok/xN7VyRkAK1sAyzJA7v.hs7YpKQomOibEwNmclyDJe8M1tL5s66\', 1)', (err) => {
+    if (err) {
+      return err;
+    }
+    return null;
+  });
+  pool.query('INSERT INTO users (name, email, password, is_admin) VALUES (\'New User\', \'user@gmail.com\', \'$2a$08$Ok/xN7VyRkAK1sAyzJA7v.hs7YpKQomOibEwNmclyDJe8M1tL5s66\', 0)', (err) => {
+    if (err) {
+      return err;
+    }
+    return null;
+  });
+  pool.query('INSERT INTO requests (title, type, description, user_id) VALUES (\'This is title\', \'repair\', \'This is description\', 2)', (err) => {
+    if (err) {
+      return err;
+    }
+    return null;
+  });
+  pool.query('INSERT INTO requests (title, type, description, user_id) VALUES (\'This is title\', \'repair\', \'This is description\', 2)', (err) => {
+    if (err) {
+      return err;
+    }
+    return null;
+  });
+  pool.query('INSERT INTO requests (title, type, description, user_id) VALUES (\'This is title\', \'repair\', \'This is description\', 2)', (err) => {
+    if (err) {
+      return err;
+    }
+    return null;
+  });
+  done();
+});
 describe('Admin Requests', () => {
   describe('GET /requests', () => {
     it('should get all requests for the admin', (done) => {
