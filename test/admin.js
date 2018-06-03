@@ -13,31 +13,31 @@ before((done) => {
     if (err) {
       return err;
     }
-    return null;
+    return console.log('Success');
   });
   pool.query('INSERT INTO users (name, email, password, is_admin) VALUES (\'New User\', \'user@gmail.com\', \'$2a$08$Ok/xN7VyRkAK1sAyzJA7v.hs7YpKQomOibEwNmclyDJe8M1tL5s66\', 0)', (err) => {
     if (err) {
       return err;
     }
-    return null;
+    return console.log('Success');
   });
   pool.query('INSERT INTO requests (title, type, description, user_id) VALUES (\'This is title\', \'repair\', \'This is description\', 2)', (err) => {
     if (err) {
       return err;
     }
-    return null;
+    return console.log('Success');
   });
   pool.query('INSERT INTO requests (title, type, description, user_id) VALUES (\'This is title\', \'repair\', \'This is description\', 2)', (err) => {
     if (err) {
       return err;
     }
-    return null;
+    return console.log('Success');
   });
   pool.query('INSERT INTO requests (title, type, description, user_id) VALUES (\'This is title\', \'repair\', \'This is description\', 2)', (err) => {
     if (err) {
       return err;
     }
-    return null;
+    return console.log('Success');
   });
   done();
 });
