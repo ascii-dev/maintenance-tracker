@@ -5,7 +5,7 @@ import app from '../server/server';
 chai.use(chaiHttp);
 chai.should();
 
-const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTI3NjI2NDQ0fQ.FfISUHBFjNMj0Ot3OZ49mqgPOwm03e7fyPd5bLq8d0w';
+const userToken = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTI3NjI2NDQ0fQ.FfISUHBFjNMj0Ot3OZ49mqgPOwm03e7fyPd5bLq8d0w';
 
 describe('Requests', () => {
   describe('/GET api/v1/users/requests', () => {
@@ -13,7 +13,7 @@ describe('Requests', () => {
     it('should get all user requests', (done) => {
       chai.request(app)
         .get('/api/v1/users/requests/')
-        .set('x-access-token', userToken)
+        .set('Authorization', userToken)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -26,7 +26,7 @@ describe('Requests', () => {
       const id = 1;
       chai.request(app)
         .get(`/api/v1/users/requests/${id}`)
-        .set('x-access-token', userToken)
+        .set('Authorization', userToken)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -39,7 +39,7 @@ describe('Requests', () => {
       const id = 1000;
       chai.request(app)
         .get(`/api/v1/users/requests/${id}`)
-        .set('x-access-token', userToken)
+        .set('Authorization', userToken)
         .end((err, res) => {
           res.should.have.status(404);
           done();
@@ -51,7 +51,7 @@ describe('Requests', () => {
       const id = 'name';
       chai.request(app)
         .get(`/api/v1/users/requests/${id}`)
-        .set('x-access-token', userToken)
+        .set('Authorization', userToken)
         .end((err, res) => {
           res.should.have.status(400);
           done();
@@ -69,7 +69,7 @@ describe('Requests', () => {
       };
       chai.request(app)
         .post('/api/v1/users/requests/')
-        .set('x-access-token', userToken)
+        .set('Authorization', userToken)
         .send(data)
         .end((err, res) => {
           res.should.have.status(201);
@@ -87,7 +87,7 @@ describe('Requests', () => {
       };
       chai.request(app)
         .post('/api/v1/users/requests/')
-        .set('x-access-token', userToken)
+        .set('Authorization', userToken)
         .send(data)
         .end((err, res) => {
           res.should.have.status(400);
@@ -107,7 +107,7 @@ describe('Requests', () => {
       };
       chai.request(app)
         .put(`/api/v1/users/requests/${id}`)
-        .set('x-access-token', userToken)
+        .set('Authorization', userToken)
         .send(data)
         .end((err, res) => {
           res.should.have.status(200);
@@ -126,7 +126,7 @@ describe('Requests', () => {
       };
       chai.request(app)
         .put(`/api/v1/users/requests/${id}`)
-        .set('x-access-token', userToken)
+        .set('Authorization', userToken)
         .send(data)
         .end((err, res) => {
           res.should.have.status(400);
@@ -144,7 +144,7 @@ describe('Requests', () => {
       };
       chai.request(app)
         .put(`/api/v1/users/requests/${id}`)
-        .set('x-access-token', userToken)
+        .set('Authorization', userToken)
         .send(data)
         .end((err, res) => {
           res.should.have.status(404);
