@@ -1,18 +1,11 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server/server';
-import pool from '../server/config/connect';
 
 chai.use(chaiHttp);
 chai.should();
 
 const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTI3NjI2NDQ0fQ.FfISUHBFjNMj0Ot3OZ49mqgPOwm03e7fyPd5bLq8d0w';
-
-after((done) => {
-  pool.query('TRUNCATE users RESTART IDENTITY CASCADE');
-  pool.query('TRUNCATE requests RESTART IDENTITY CASCADE');
-  done();
-});
 
 describe('Requests', () => {
   describe('/GET api/v1/users/requests', () => {
@@ -160,29 +153,29 @@ describe('Requests', () => {
     });
   });
 
-  describe('/DELETE api/v1/users/requests/:id', () => {
-    // Test create new request (return 201)
-    it('should delete a request when the id exists', (done) => {
-      const id = 3;
-      chai.request(app)
-        .delete(`/api/v1/users/requests/${id}`)
-        .set('x-access-token', userToken)
-        .end((err, res) => {
-          res.should.have.status(200);
-          done();
-        });
-    });
+  // describe('/DELETE api/v1/users/requests/:id', () => {
+  //   // Test create new request (return 201)
+  //   it('should delete a request when the id exists', (done) => {
+  //     const id = 3;
+  //     chai.request(app)
+  //       .delete(`/api/v1/users/requests/${id}`)
+  //       .set('x-access-token', userToken)
+  //       .end((err, res) => {
+  //         res.should.have.status(200);
+  //         done();
+  //       });
+  //   });
 
-    // Test create new request (return 400)
-    it('should not delete a request when the id does not exist', (done) => {
-      const requestid = 0;
-      chai.request(app)
-        .delete(`/api/v1/users/requests/${requestid}`)
-        .set('x-access-token', userToken)
-        .end((err, res) => {
-          res.should.have.status(404);
-          done();
-        });
-    });
-  });
+  //   // Test create new request (return 400)
+  //   it('should not delete a request when the id does not exist', (done) => {
+  //     const requestid = 0;
+  //     chai.request(app)
+  //       .delete(`/api/v1/users/requests/${requestid}`)
+  //       .set('x-access-token', userToken)
+  //       .end((err, res) => {
+  //         res.should.have.status(404);
+  //         done();
+  //       });
+  //   });
+  // });
 });

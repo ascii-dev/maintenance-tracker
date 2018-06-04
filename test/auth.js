@@ -12,7 +12,7 @@ describe('Authentication', () => {
       const user = {
         name: 'John Doe',
         email: 'johndoe@gmail.com',
-        password: 'johndo',
+        password: 'johndoe',
       };
       chai.request(app)
         .post('/api/v1/auth/signup')
@@ -27,7 +27,7 @@ describe('Authentication', () => {
     it('should log a user in successfully', (done) => {
       const details = {
         email: 'johndoe@gmail.com',
-        password: 'johndo',
+        password: 'johndoe',
       };
       chai.request(app)
         .post('/api/v1/auth/login')
@@ -40,7 +40,7 @@ describe('Authentication', () => {
     it('should not log a user in successfully when email is incorrect', (done) => {
       const details = {
         email: '12rfcas@gmail.com',
-        password: 'johndo',
+        password: 'johndoe',
       };
       chai.request(app)
         .post('/api/v1/auth/login')
