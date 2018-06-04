@@ -73,7 +73,7 @@ describe('Admin Requests', () => {
 
     // Test GET single request (return 404)
     it('should not get user when the id supplied does not exist', (done) => {
-      const id = 100000;
+      const id = 0;
       chai.request(app)
         .get(`/api/v1/requests/users/${id}`)
         .set('Authorization', adminToken)
@@ -99,7 +99,7 @@ describe('Admin Requests', () => {
 
     // Test PUT approve request (return 404)
     it('should not approve request when the id supplied does not exist', (done) => {
-      const id = 100000;
+      const id = 0;
       chai.request(app)
         .put(`/api/v1/requests/${id}/approve`)
         .set('Authorization', adminToken)
@@ -113,7 +113,7 @@ describe('Admin Requests', () => {
   describe('PUT requests/:id/resolve', () => {
     // Test PUT resolve request (return 200)
     it('should resolve the request when id exists', (done) => {
-      const id = 2;
+      const id = 1;
       chai.request(app)
         .put(`/api/v1/requests/${id}/resolve`)
         .set('Authorization', adminToken)
@@ -125,7 +125,7 @@ describe('Admin Requests', () => {
 
     // Test PUT resolve request (return 404)
     it('should not resolve request when the id supplied does not exist', (done) => {
-      const id = 100000;
+      const id = 0;
       chai.request(app)
         .put(`/api/v1/requests/${id}/resolve`)
         .set('Authorization', adminToken)
@@ -151,7 +151,7 @@ describe('Admin Requests', () => {
 
     // Test GET single request (return 404)
     it('should not disapprove request when the id supplied does not exist', (done) => {
-      const id = 100000;
+      const id = 0;
       chai.request(app)
         .put(`/api/v1/requests/${id}/disapprove`)
         .set('Authorization', adminToken)
