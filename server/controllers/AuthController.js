@@ -16,12 +16,12 @@ class AuthController {
   static signup(req, res) {
     const error = authHelper('signup', req);
     if (error !== undefined) {
-      return res.status(400).send(error);
+      return res.status(400).json({ message: error });
     }
     const hashedPassword = bcrypt.hashSync(req.body.password.trim(), 8);
     pool.query(`INSERT INTO users (name, email, password) values ('${req.body.name.trim()}', '${req.body.email.trim()}', '${hashedPassword}') RETURNING *`, (err, result) => {
       if (err) {
-        return res.status(500).send('An error occured while processing this request');
+        return res.status(500).json({ message: 'An error occured while processing this request' });
       }
       // Create a token
       const token = jwt.sign({ id: result.rows[0].id }, config.jwtSecret, { expiresIn: 86400 });
@@ -49,14 +49,14 @@ class AuthController {
     }
     pool.query(`SELECT * FROM users WHERE email = '${req.body.email}'`, (err, result) => {
       if (err) {
-        return res.status(500).send('An error occured while processing this request');
+        return res.status(500).json({ message: 'An error occured while processing this request' });
       }
       if (result.rowCount === 0) {
-        return res.status(401).send('Email or password incorrect');
+        return res.status(401).json({ message: 'Email or password incorrect' });
       }
       const validPassword = bcrypt.compareSync(req.body.password.trim(), result.rows[0].password);
       if (!validPassword) {
-        return res.status(401).send('Email or password incorrect');
+        return res.status(401).json({ message: 'Email or password incorrect' });
       }
 
       const token = jwt.sign({ id: result.rows[0].id }, config.jwtSecret, { expiresIn: 86400 });
