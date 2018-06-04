@@ -25,9 +25,8 @@ class AuthController {
       }
       // Create a token
       const token = jwt.sign({ id: result.rows[0].id }, config.jwtSecret, { expiresIn: 86400 });
-      return res.status(201).header({
+      return res.status(201).json({
         token,
-      }).json({
         name: result.rows[0].name,
         email: result.rows[0].email,
         message: 'User account created successfully',
@@ -61,9 +60,8 @@ class AuthController {
 
       const token = jwt.sign({ id: result.rows[0].id }, config.jwtSecret, { expiresIn: 86400 });
 
-      return res.status(200).header({
+      return res.status(200).json({
         token,
-      }).json({
         name: result.rows[0].name,
         email: result.rows[0].email,
         message: 'User has successfully logged in',
