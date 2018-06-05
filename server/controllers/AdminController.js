@@ -9,7 +9,7 @@ class AdminController {
   static getAllRequests(req, res) {
     pool.query('SELECT * FROM requests', (err, result) => {
       if (err) {
-        return res.status(500).send('An error occured while processing this request');
+        return res.status(500).json({ message: 'An error occured while processing this request' });
       }
       return res.status(200).json({
         requests: result.rows,
@@ -27,10 +27,10 @@ class AdminController {
   static getSingleRequest(req, res) {
     pool.query(`SELECT * FROM requests WHERE id = ${req.params.id}`, (err, result) => {
       if (err) {
-        return res.status(500).send('An error occured while processing this request');
+        return res.status(400).json({ message: 'The request ID must be a number' });
       }
       if (result.rowCount === 0) {
-        return res.status(404).send('The request could not be found');
+        return res.status(404).json({ message: 'The request could not be found' });
       }
       return res.status(200).json({
         title: result.rows[0].title,
@@ -41,6 +41,7 @@ class AdminController {
         created_at: result.rows[0].created_at,
       });
     });
+    return null;
   }
 
   /**
@@ -52,10 +53,10 @@ class AdminController {
   static getUserDetails(req, res) {
     pool.query(`SELECT * FROM users WHERE id = ${req.params.id}`, (err, user) => {
       if (err) {
-        return res.status(500).send('An error occured while processing this request');
+        return res.status(400).json({ message: 'The user ID must be a number' });
       }
       if (user.rowCount === 0) {
-        return res.status(404).send('The request could not be found');
+        return res.status(404).json({ message: 'The request could not be found' });
       }
       return res.status(200).json({
         name: user.rows[0].name,
@@ -73,12 +74,12 @@ class AdminController {
   static approveRequest(req, res) {
     pool.query(`UPDATE requests SET status_id = 2 WHERE id = ${req.params.id}`, (err, result) => {
       if (err) {
-        return res.status(500).send('An error occured while processing this request');
+        return res.status(400).json({ message: 'The request ID must be a number' });
       }
       if (result.rowCount === 0) {
-        return res.status(404).send('The request could not be found');
+        return res.status(404).json({ message: 'The request could not be found' });
       }
-      return res.status(200).send('Request updated successfully');
+      return res.status(200).json({ message: 'Request updated successfully' });
     });
   }
 
@@ -91,12 +92,12 @@ class AdminController {
   static disapproveRequest(req, res) {
     pool.query(`UPDATE requests SET status_id = 3 WHERE id = ${req.params.id} RETURNING *`, (err, result) => {
       if (err) {
-        return res.status(500).send('An error occured while processing this request');
+        return res.status(400).json({ message: 'The request ID must be a number' });
       }
       if (result.rowCount === 0) {
-        return res.status(404).send('The request could not be found');
+        return res.status(404).json({ message: 'The request could not be found' });
       }
-      return res.status(200).send('Request updated successfully');
+      return res.status(200).json({ message: 'Request updated successfully' });
     });
   }
 
@@ -109,12 +110,12 @@ class AdminController {
   static resolveRequest(req, res) {
     pool.query(`UPDATE requests SET status_id = 4 WHERE id = ${req.params.id}`, (err, result) => {
       if (err) {
-        return res.status(500).send('An error occured while processing this request');
+        return res.status(400).json({ message: 'The request ID must be a number' });
       }
       if (result.rowCount === 0) {
-        return res.status(404).send('The request could not be found');
+        return res.status(404).json({ message: 'The request could not be found' });
       }
-      return res.status(200).send('Request updated successfully');
+      return res.status(200).json({ message: 'Request updated successfully' });
     });
   }
 }

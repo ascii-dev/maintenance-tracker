@@ -1,10 +1,13 @@
 import path from 'path';
 import express from 'express';
 import bodyParser from 'body-parser';
+import swagger from 'swagger-ui-express';
 import adminRoutes from './routes/admin';
 import requestRoutes from './routes/request';
 import authRoutes from './routes/auth';
 import frontendRoutes from './routes/frontend';
+
+const swaggerDocument = require('../swagger.json');
 
 const app = express();
 
@@ -23,6 +26,8 @@ app.use('/api/v1/users', requestRoutes);
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/requests', adminRoutes);
 app.use('/', frontendRoutes);
+app.use('/docs', swagger.serve, swagger.setup(swaggerDocument));
+
 
 // Start the server
 app.listen(port, () => {

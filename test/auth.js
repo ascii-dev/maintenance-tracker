@@ -46,7 +46,7 @@ describe('Authentication', () => {
         .post('/api/v1/auth/login')
         .send(details)
         .end((err, res) => {
-          res.should.have.status(404);
+          res.should.have.status(401);
           done();
         });
     });
