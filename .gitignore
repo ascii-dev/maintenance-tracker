@@ -4,6 +4,7 @@ Icon?
 ._*
 .env
 dist
+distfrontend
 
 # Windows
 Thumbs.db
