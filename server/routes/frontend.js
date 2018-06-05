@@ -1,6 +1,4 @@
 import { Router } from 'express';
-// import VerifyToken from '../middlewares/VerifyToken';
-// import VerifyAdmin from '../middlewares/VerifyAdmin';
 
 const frontendRoutes = Router();
 const root = 'frontend/views';
