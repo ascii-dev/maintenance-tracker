@@ -1,0 +1,233 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+.div-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.container {
+  max-width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.description {
+  max-width: 960px;
+}
+
+.grey-bg {
+  background: #edeef0;
+}
+
+.orange-bg {
+background: #FF4500;
+}
+
+.navigation {
+height: 60px;
+}
+
+.white-text {
+color: #fff;
+}
+
+.landing-header {
+background: url('../images/bg.jpg') center no-repeat;
+height: 500px;
+padding-top: 1.5em;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.logo-text {
+font-family: 'Gloria Hallelujah', cursive;
+font-weight: 400;
+font-size: 34px;
+}
+
+
+.main-nav ul {
+  list-style-type: none;
+}
+
+.main-nav ul li {
+  padding-right: 20px;
+}
+
+.intro {
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.small-container {
+  max-width: 960px;
+}
+
+.lead {
+  font-size: 50px;
+}
+
+.actions {
+  margin-top: 30px;
+}
+
+.btn {
+  display: inline-block;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  border-radius: .25rem;
+}
+
+.btn-sm {
+  padding: .124rem .10rem;
+  border-radius: .25rem;
+  font-size: 1rem;
+}
+
+.btn-lg {
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  border-radius: 0.3rem;
+}
+
+.btn-full {
+  width: 90%;
+}
+
+.btn-green {
+  color: #fff;
+  background: #1FCC92;
+}
+
+.btn-white {
+  color: #000;
+  background: #fff;
+}
+
+.btn-red {
+  color: #fff;
+  background: red;
+}
+
+.btn-muted {
+color: #fff;
+background: #edeef0;
+}
+
+.in-review {
+color: orange;
+}
+
+.btn-orange {
+  color: #fff;
+  background: orange;
+}
+
+.fit-content {
+  height: fit-content;
+}
+
+.main {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.card {
+  position: relative;
+  background: #fff;
+  padding: .375rem .75rem;
+  border: 1px solid #edeef0;
+  border-radius: .25rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: .5rem;
+}
+
+textarea {
+resize: none;
+}
+
+.form-control {
+  display: block;
+  width: 95%;
+  padding: .375rem .75rem;
+  border: 1px solid #edeef0;
+  border-radius: .25rem;
+}
+
+.errors p {
+  color: red;
+}
+
+.pt-10 {
+  padding-top: 10px;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mr-10 {
+  margin-right: 10px;
+}
+
+.m-50 {
+  margin: 50px;
+}
+
+.flex-2 {
+  flex: 2;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.profile {
+  height: 100px;
+}
+
+.requests {
+  margin-left: 25px;
+}
+
+.footer {
+  height: 60px;
+  margin-bottom: 0px;
+}
