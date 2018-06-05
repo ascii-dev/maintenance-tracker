@@ -1,10 +1,10 @@
 import { Router } from 'express';
 // import VerifyToken from '../middlewares/VerifyToken';
 // import VerifyAdmin from '../middlewares/VerifyAdmin';
-import Frontend from '../../frontend/controllers/FrontendController';
 
 const frontendRoutes = Router();
+const root = 'frontend/views';
 
-frontendRoutes.get('/', Frontend.index);
+frontendRoutes.get('/', (req, res) => { res.sendFile('index.html', { root }); });
 
 export default frontendRoutes;
