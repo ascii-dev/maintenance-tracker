@@ -48,6 +48,10 @@ height: 60px;
 color: #fff;
 }
 
+.blue-text {
+color: blue;
+}
+
 .landing-header {
 background: url('../images/bg.jpg') center no-repeat;
 height: 500px;
@@ -92,6 +96,10 @@ font-size: 34px;
   margin-top: 30px;
 }
 
+.vh85 {
+  min-height: 85vh;
+}
+
 .btn {
   display: inline-block;
   border: 1px solid transparent;
@@ -109,6 +117,13 @@ font-size: 34px;
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   border-radius: 0.3rem;
+}
+
+.btn-lg-2 {
+padding: 1rem 2rem;
+border-radius: 0.3rem;
+font-size: 1.5rem;
+font-weight: 600;
 }
 
 .btn-full {
@@ -190,6 +205,10 @@ resize: none;
   padding-top: 10px;
 }
 
+.p-25 {
+padding: 25px;
+}
+
 .mt-10 {
   margin-top: 10px;
 }
@@ -230,4 +249,32 @@ resize: none;
 .footer {
   height: 60px;
   margin-bottom: 0px;
+}
+
+.authBg {
+background: url('../images/bg.jpg') center no-repeat;
+}
+
+.message {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.message-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.message-failure {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.hide {
+  display: none;
 }
