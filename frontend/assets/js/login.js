@@ -7,7 +7,7 @@ const getFormData = () => {
   return formData;
 };
 
-const signup = () => {
+const login = () => {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const formData = getFormData();
@@ -34,4 +34,4 @@ const signup = () => {
   });
 };
 
-signup();
+login();
