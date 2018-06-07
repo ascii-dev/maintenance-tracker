@@ -8,5 +8,6 @@ frontendRoutes.get('/signup', (req, res) => { res.sendFile('signup.html', { root
 frontendRoutes.get('/login', (req, res) => { res.sendFile('login.html', { root }); });
 frontendRoutes.get('/dashboard', (req, res) => { res.sendFile('dashboard.html', { root }); });
 frontendRoutes.get('/create', (req, res) => { res.sendFile('create.html', { root }); });
+frontendRoutes.get('/requests/:id', (req, res) => { res.sendFile('single.html', { root }); });
 
 export default frontendRoutes;

@@ -28,7 +28,7 @@ const dashboard = () => {
                             <h3 class="title"><strong>Title: </strong>${request.title}</h3>
                             <p><strong>Description: </strong>${request.title.substring(0, 150)}</p>
                           </div>
-                          <a href="view-request.html" class="btn btn-green fit-content">View Request</a>
+                          <a href="/${request.id}" class="btn btn-green fit-content">View Request</a>
                         </div>
                         <hr>`;
           });

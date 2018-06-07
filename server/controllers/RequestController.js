@@ -31,10 +31,15 @@ class RequestController {
         return res.status(400).json({ message: 'The request ID must be a number' });
       }
       if (result.rowCount === 0) {
-        return res.status(404).json({ message: 'The user could not be found' });
+        return res.status(404).json({ message: 'The request could not be found' });
       }
       return res.status(200).json({
-        requests: result.rows,
+        id: result.rows[0].id,
+        title: result.rows[0].title,
+        type: result.rows[0].type,
+        description: result.rows[0].description,
+        created_at: result.rows[0].created_at,
+        status: result.rows[0].status_id,
         message: 'Single request',
       });
     });
@@ -100,6 +105,7 @@ class RequestController {
             return res.status(500).json({ message: 'An error occured while processing this request inner' });
           }
           return res.status(200).json({
+            id: result.rows[0].id,
             title: response.rows[0].title,
             type: response.rows[0].type,
             description: response.rows[0].description,

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Maintenance Tracker</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+  <div class="vh85">
+    <header class="navigation orange-bg">
+      <div class="container div-center">
+        <div class="flex space-between">
+          <div class="logo">
+            <a href="/" class="logo-text white-text">MT</a>
+          </div>
+          <nav class="main-nav pt-10">
+            <ul class="flex">
+              <li>
+                <a href="/dashboard" class="white-text">Dashboard</a>
+              </li>
+              <li>
+                <a href="/create" class="white-text">Make Request</a>
+              </li>
+              <li>
+                <a href="#" class="white-text">Logout</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <section class="main">
+      <div class="small-container div-center">
+        <h1 class="lead text-center mb-10">Create Request</h1>
+      </div>
+      <div class="small-container div-center">
+        <div class="requests card">
+          <form id="create-form" method="POST">
+            <div class="message hide"></div>
+            <div class="form-group">
+              <label for="request-title">Title</label>
+              <input type="text" name="title" id="request-title" class="form-control" placeholder="Enter a title for your request" required="required">
+            </div>
+            <div class="form-group">
+              <label for="request-type">Request Type</label>
+              <select class="form-control" name="type" id="request-type" required="required">
+                  <option>Select one</option>
+                  <option value="maintenance">Maintenance</option>
+                  <option value="repair">Repair</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="request-description">Description</label>
+              <textarea type="text" name="description" id="request-description" class="form-control" placeholder="Describe your request in detail" required="required"></textarea>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-lg btn-green">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer class="footer orange-bg">
+    <div class="container div-center flex space-between pt-10">
+      <div>
+        <a href="/" class="white-text">&copy; 2018, Maintenance Tracker</a>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/js/create.js"></script>
+</body>
+</html>
