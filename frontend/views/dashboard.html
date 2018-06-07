@@ -13,73 +13,44 @@
 <body>
   <div class="vh85">
     <header class="navigation orange-bg">
-        <div class="container div-center">
-            <div class="flex space-between">
-                <div class="logo">
-                    <a href="index.html" class="logo-text white-text">MT</a>
-                </div>
-                <nav class="main-nav pt-10">
-                    <ul class="flex">
-                        <li>
-                            <a href="dashboard.html" class="white-text">Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="make-request.html" class="white-text">Make Request</a>
-                        </li>
-                        <li>
-                            <a href="index.html" class="white-text">Logout</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+      <div class="container div-center">
+        <div class="flex space-between">
+          <div class="logo">
+            <a href="/index" class="logo-text white-text">MT</a>
+          </div>
+          <nav class="main-nav pt-10">
+            <ul class="flex">
+              <li>
+                <a href="/dashboard" class="white-text">Dashboard</a>
+              </li>
+              <li>
+                <a href="/create-request" class="white-text">Make Request</a>
+              </li>
+              <li>
+                <a href="#" class="white-text">Logout</a>
+              </li>
+            </ul>
+          </nav>
         </div>
+      </div>
     </header>
     <section class="main">
-        <div class="small-container row div-center">
-            <h3 class="user-name mb-10 text-center">My Requests</h3>
-            <div class="requests card">
-                <div class="mt-10 request flex space-between mb-10 col">
-                  <div class="flex-2">
-                    <h3 class="title"><strong>Title: </strong>My laptop screen is broken</h3>
-                    <p><strong>Description: </strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt, magna id malesuada dictum,...</p>
-                  </div>
-                  <a href="view-request.html" class="btn btn-green fit-content">View Request</a>
-                </div>
-                <hr>
-                <div class="mt-10 request flex space-between mb-10 col">
-                  <div class="flex-2">
-                    <h3 class="title"><strong>Title: </strong>My laptop screen is broken</h3>
-                    <p><strong>Description: </strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt, magna id malesuada dictum,...</p>
-                  </div>
-                  <a href="view-request.html" class="btn btn-green fit-content">View Request</a>
-                </div>
-                <hr>
-                <div class="mt-10 request flex space-between mb-10 col">
-                  <div class="flex-2">
-                    <h3 class="title"><strong>Title: </strong>My laptop screen is broken</h3>
-                    <p><strong>Description: </strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt, magna id malesuada dictum,...</p>
-                  </div>
-                  <a href="view-request.html" class="btn btn-green fit-content">View Request</a>
-                </div>
-                <hr>
-                <div class="mt-10 request flex space-between mb-10 col">
-                  <div class="flex-2">
-                    <h3 class="title"><strong>Title: </strong>My laptop screen is broken</h3>
-                    <p><strong>Description: </strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt, magna id malesuada dictum,...</p>
-                  </div>
-                  <a href="view-request.html" class="btn btn-green fit-content">View Request</a>
-                </div>
-                <hr>
-            </div>
+      <div class="small-container row div-center">
+        <div class="message hide"></div>
+        <h3 class="user-name mb-10 text-center">My Requests</h3>
+        <div class="requests card">
+          <!-- List of requests -->
         </div>
+      </div>
     </section>
   </div>
   <footer class="footer orange-bg">
     <div class="container div-center flex space-between pt-10">
-        <div>
-            <a href="index.html" class="white-text">&copy; 2018, Maintenance Tracker</a>
-        </div>
+      <div>
+          <a href="/index" class="white-text">&copy; 2018, Maintenance Tracker</a>
+      </div>
     </div>
   </footer>
+  <script src="assets/js/dashboard.js"></script>
 </body>
 </html>
