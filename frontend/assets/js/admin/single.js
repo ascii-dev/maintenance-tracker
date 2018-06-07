@@ -46,9 +46,9 @@ const single = () => {
               <hr>
               <p class="request-date mt-10"><strong>Created at:</strong> ${new Date(message.created_at).toDateString()}</p>
               <hr>                  
-              ${(message.status === 1 || message.status === 3) ? '<a href="#" class="btn btn-green btn-full mt-10">Accept</a>' : ''}
-              ${(message.status === 1) ? '<a href="#" class="btn btn-red btn-full mt-10">Reject</a>' : ''}
-              ${(message.status === 2) ? '<a href="#" class="btn btn-orange btn-full mt-10">Resolve</a>' : ''}
+              ${(message.status === 1 || message.status === 3) ? '<a class="btn btn-green btn-full mt-10" onclick="approve(); single();">Accept</a>' : ''}
+              ${(message.status === 1) ? '<a class="btn btn-red btn-full mt-10" onclick="disapprove(); single();">Reject</a>' : ''}
+              ${(message.status === 2) ? '<a class="btn btn-orange btn-full mt-10" onclick="resolve(); single();">Resolve</a>' : ''}
             </div>
           </div>
           <div class="requests card flex-2">

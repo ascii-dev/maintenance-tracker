@@ -105,6 +105,7 @@ font-size: 34px;
   border: 1px solid transparent;
   padding: .375rem .75rem;
   border-radius: .25rem;
+  cursor: pointer;
 }
 
 .btn-sm {
