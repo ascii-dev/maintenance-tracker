@@ -10,5 +10,6 @@ frontendRoutes.get('/dashboard', (req, res) => { res.sendFile('dashboard.html', 
 frontendRoutes.get('/create', (req, res) => { res.sendFile('create.html', { root }); });
 frontendRoutes.get('/requests/:id', (req, res) => { res.sendFile('single.html', { root }); });
 frontendRoutes.get('/requests/edit/:id', (req, res) => { res.sendFile('modify.html', { root }); });
+frontendRoutes.get('/admin', (req, res) => { res.sendFile('admin/dashboard.html', { root }); });
 
 export default frontendRoutes;

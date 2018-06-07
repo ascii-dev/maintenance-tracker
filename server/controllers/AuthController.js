@@ -29,6 +29,7 @@ class AuthController {
         token,
         name: result.rows[0].name,
         email: result.rows[0].email,
+        is_admin: result.rows[0].is_admin,
         message: 'User account created successfully',
       });
     });
@@ -64,6 +65,7 @@ class AuthController {
         token,
         name: result.rows[0].name,
         email: result.rows[0].email,
+        is_admin: result.rows[0].is_admin,
         message: 'User has successfully logged in',
       });
     });
