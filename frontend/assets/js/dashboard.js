@@ -26,9 +26,9 @@ const dashboard = () => {
             requests += `<div class="mt-10 request flex space-between mb-10 col">
                           <div class="flex-2">
                             <h3 class="title"><strong>Title: </strong>${request.title}</h3>
-                            <p><strong>Description: </strong>${request.title.substring(0, 150)}</p>
+                            <p><strong>Description: </strong>${request.description.substring(0, 150)}</p>
                           </div>
-                          <a href="/${request.id}" class="btn btn-green fit-content">View Request</a>
+                          <a href="/requests/${request.id}" class="btn btn-green fit-content">View Request</a>
                         </div>
                         <hr>`;
           });
