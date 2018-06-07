@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Maintenance Tracker</title>
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Maintenance Tracker</title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
 <body class="authBg">
   <div class="vh85">
@@ -18,24 +18,20 @@
           <div class="logo">
             <a href="index.html" class="logo-text white-text">MT</a>
           </div>
-        </div>
+        </div> 
       </div>
     </header>
     <section class="main">
       <div class="container div-center">
         <div class="div-center">
-          <h1 class="intro text-center white-text mb-10">Sign Up</h1>
+          <h1 class="intro text-center white-text mb-10">Login</h1>
         </div>
         <div class="flex row">
           <div class="col"></div>
           <div class="col">
             <div class="card div-center p-25">
+              <div class="message hide"></div>
               <form id="signup-form" method="POST">
-                <div class="message hide"></div>
-                <div class="form-group">
-                  <label for="name">Full name</label>
-                  <input type="text" name="name" id="name" class="form-control" placeholder="Enter your full name" required="required">
-                </div>
                 <div class="form-group">
                   <label for="email">Email</label>
                   <input type="text" name="email" id="email" class="form-control" placeholder="Enter your email" required="required">
@@ -45,14 +41,9 @@
                   <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required="required">
                 </div>
                 <div class="form-group">
-                  <label for="confirm_password">Confirm Password</label>
-                  <input type="password" name="confirmPassword" id="confirm_password" class="form-control" placeholder="Enter your password again" required="required">
+                  <button type="submit" class="btn btn-lg btn-green">Login</button>
                 </div>
-                <div id="errors"></div>
-                <div class="form-group">
-                  <button type="submit" class="btn btn-lg btn-green">Sign Up</button>
-                </div>
-                <p>Click here to <a href="login.html" class="blue-text">login to your account</a></p>
+                <p>Click here to <a href="signup.html" class="blue-text">create an account</a></p>
               </form>
             </div>
           </div>
@@ -68,6 +59,6 @@
       </div>
     </div>
   </footer>
-  <script src="assets/js/signup.js"></script>
+  <script src="assets/js/login.js"></script>
 </body>
 </html>
