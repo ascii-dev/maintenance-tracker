@@ -35,11 +35,33 @@
       </div>
     </header>
     <section class="main">
-      <div class="small-container row div-center">
-        <div class="message hide"></div>
-        <h3 class="user-name mb-10 text-center">My Requests</h3>
+      <div class="small-container div-center">
+        <h1 class="lead text-center mb-10">Create Request</h1>
+      </div>
+      <div class="small-container div-center">
         <div class="requests card">
-          <!-- List of requests -->
+          <form id="create-form" method="POST">
+            <div class="message hide"></div>
+            <div class="form-group">
+              <label for="request-title">Title</label>
+              <input type="text" name="title" id="request-title" class="form-control" placeholder="Enter a title for your request" required="required">
+            </div>
+            <div class="form-group">
+              <label for="request-type">Request Type</label>
+              <select class="form-control" name="type" id="request-type" required="required">
+                  <option>Select one</option>
+                  <option value="maintenance">Maintenance</option>
+                  <option value="repair">Repair</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="request-description">Description</label>
+              <textarea type="text" name="description" id="request-description" class="form-control" placeholder="Describe your request in detail" required="required"></textarea>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-lg btn-green">Submit</button>
+            </div>
+          </form>
         </div>
       </div>
     </section>
@@ -47,10 +69,10 @@
   <footer class="footer orange-bg">
     <div class="container div-center flex space-between pt-10">
       <div>
-          <a href="/" class="white-text">&copy; 2018, Maintenance Tracker</a>
+        <a href="/" class="white-text">&copy; 2018, Maintenance Tracker</a>
       </div>
     </div>
   </footer>
-  <script src="assets/js/dashboard.js"></script>
+  <script src="assets/js/create.js"></script>
 </body>
 </html>
