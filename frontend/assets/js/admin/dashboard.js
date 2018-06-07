@@ -31,7 +31,7 @@ const dashboard = () => {
                             <!-- <p><strong>By: </strong> Samuel Afolaranmi</p> -->
                             <p><strong>Created at: </strong> ${new Date(request.created_at).toDateString()}</p>
                           </div>
-                          <a href="#" class="btn btn-green fit-content">View Request</a>
+                          <a href="/admin/requests/${request.id}" class="btn btn-green fit-content">View Request</a>
                         </div>
                         <hr>
                         `;
