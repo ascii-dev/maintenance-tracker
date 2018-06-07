@@ -46,7 +46,7 @@ const single = () => {
               <hr>
               <p class="request-date mt-10"><strong>Created at:</strong> ${new Date(message.created_at).toDateString()}</p>
               <hr>                  
-              ${(message.status === 1) ? `<button href="/requests/edit/${message.id}" class="btn btn-green btn-full mt-10">Edit</button>` : ''}
+              ${(message.status === 1) ? `<a href="/requests/edit/${message.id}" class="btn btn-green btn-full mt-10">Edit</a>` : ''}
               <hr>
               ${(message.status === 1) ? '<button href="#" class="btn btn-red btn-full mt-10" onclick="deleteRequest()">Delete</button>' : ''}
             </div>
