@@ -24,17 +24,16 @@ const dashboard = () => {
         } else {
           message.requests.forEach((request) => {
             requests += `
-                        <div class="mt-10 request flex space-between mb-10 col">
-                          <div class="flex-2">
-                            <h3 class="title"><strong>Title: </strong>${request.title}</h3>
-                            <p><strong>Description: </strong>${request.description.substring(0, 150)}</p>
-                            <!-- <p><strong>By: </strong> Samuel Afolaranmi</p> -->
-                            <p><strong>Created at: </strong> ${new Date(request.created_at).toDateString()}</p>
-                          </div>
-                          <a href="/admin/requests/${request.id}" class="btn btn-green fit-content">View Request</a>
-                        </div>
-                        <hr>
-                        `;
+              <div class="mt-10 request flex space-between mb-10 col">
+                <div class="flex-2">
+                  <h3 class="title"><strong>Title: </strong>${request.title}</h3>
+                  <p><strong>Description: </strong>${request.description.substring(0, 150)}</p>
+                  <p><strong>Created at: </strong> ${new Date(request.created_at).toDateString()}</p>
+                </div>
+                <a href="/admin/requests/${request.id}" class="btn btn-green fit-content">View Request</a>
+              </div>
+              <hr>
+            `;
           });
         }
         requestsDiv.innerHTML = requests;

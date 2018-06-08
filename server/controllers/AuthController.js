@@ -18,21 +18,33 @@ class AuthController {
     if (error !== undefined) {
       return res.status(400).json({ message: error });
     }
+    const email = req.body.email.trim();
+    const name = req.body.name.trim();
     const hashedPassword = bcrypt.hashSync(req.body.password.trim(), 8);
-    pool.query(`INSERT INTO users (name, email, password) values ('${req.body.name.trim()}', '${req.body.email.trim()}', '${hashedPassword}') RETURNING *`, (err, result) => {
-      if (err) {
-        return res.status(500).json({ message: 'An error occured while processing this request' });
-      }
-      // Create a token
-      const token = jwt.sign({ id: result.rows[0].id }, config.jwtSecret, { expiresIn: 86400 });
-      return res.status(201).json({
-        token,
-        name: result.rows[0].name,
-        email: result.rows[0].email,
-        is_admin: result.rows[0].is_admin,
-        message: 'User account created successfully',
-      });
-    });
+    pool.query(`SELECT email FROM users WHERE email = '${email}'`)
+      .then((response) => {
+        if (response.rowCount === 0) {
+          return res.status(403).json({ message: 'Account already exists' });
+        }
+        pool.query(`INSERT INTO users (name, email, password) values ('${name}', '${email}', '${hashedPassword}') RETURNING *`)
+          .then((result) => {
+            const token = jwt.sign(
+              { id: result.rows[0].id },
+              config.jwtSecret,
+              { expiresIn: 86400 },
+            );
+            return res.status(201).json({
+              token,
+              name: result.rows[0].name,
+              email: result.rows[0].email,
+              is_admin: result.rows[0].is_admin,
+              message: 'User account created successfully',
+            });
+          })
+          .catch(() => { res.status(500).json({ message: 'An error occured while processing this request inner' }); });
+        return null;
+      })
+      .catch(() => { res.status(500).json({ message: 'An error occured while processing this request outer' }); });
     return null;
   }
 
@@ -47,28 +59,28 @@ class AuthController {
     if (error !== undefined) {
       return res.status(400).send(error);
     }
-    pool.query(`SELECT * FROM users WHERE email = '${req.body.email}'`, (err, result) => {
-      if (err) {
-        return res.status(500).json({ message: 'An error occured while processing this request' });
-      }
-      if (result.rowCount === 0) {
-        return res.status(401).json({ message: 'Email or password incorrect' });
-      }
-      const validPassword = bcrypt.compareSync(req.body.password.trim(), result.rows[0].password);
-      if (!validPassword) {
-        return res.status(401).json({ message: 'Email or password incorrect' });
-      }
+    pool.query(`SELECT * FROM users WHERE email = '${req.body.email}'`)
+      .then((result) => {
+        const validPassword = bcrypt.compareSync(req.body.password.trim(), result.rows[0].password);
+        if (result.rowCount === 0 || !validPassword) {
+          return res.status(401).json({ message: 'Email or password incorrect' });
+        }
 
-      const token = jwt.sign({ id: result.rows[0].id }, config.jwtSecret, { expiresIn: 86400 });
+        const token = jwt.sign(
+          { id: result.rows[0].id },
+          config.jwtSecret,
+          { expiresIn: 86400 },
+        );
 
-      return res.status(200).json({
-        token,
-        name: result.rows[0].name,
-        email: result.rows[0].email,
-        is_admin: result.rows[0].is_admin,
-        message: 'User has successfully logged in',
-      });
-    });
+        return res.status(200).json({
+          token,
+          name: result.rows[0].name,
+          email: result.rows[0].email,
+          is_admin: result.rows[0].is_admin,
+          message: 'User has successfully logged in',
+        });
+      })
+      .catch(() => { res.status(401).json({ message: 'Account does not exist' }); });
     return null;
   }
 }

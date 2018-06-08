@@ -39,7 +39,7 @@ describe('Authentication', () => {
     });
     it('should not log a user in successfully when email is incorrect', (done) => {
       const details = {
-        email: '12rfcas@gmail.com',
+        email: `${Math.random().toString(36).substring(2, 15)}@gmail.com`,
         password: 'johndoe',
       };
       chai.request(app)
