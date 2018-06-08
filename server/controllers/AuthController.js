@@ -23,7 +23,7 @@ class AuthController {
     const hashedPassword = bcrypt.hashSync(req.body.password.trim(), 8);
     pool.query(`SELECT email FROM users WHERE email = '${email}'`)
       .then((response) => {
-        if (response.rowCount > 0) {
+        if (response.rowCount === 0) {
           return res.status(403).json({ message: 'Account already exists' });
         }
         pool.query(`INSERT INTO users (name, email, password) values ('${name}', '${email}', '${hashedPassword}') RETURNING *`)
@@ -80,7 +80,7 @@ class AuthController {
           message: 'User has successfully logged in',
         });
       })
-      .catch(() => { res.status(500).json({ message: 'An error occured while processing this request' }); });
+      .catch(() => { res.status(401).json({ message: 'Account does not exist' }); });
     return null;
   }
 }
