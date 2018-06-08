@@ -5,13 +5,15 @@ import app from '../server/server';
 chai.use(chaiHttp);
 chai.should();
 
+const email = Math.random().toString(36).substring(2, 15);
+
 describe('Authentication', () => {
   describe('Create account', () => {
     // Test user registration
     it('should register a user successfully', (done) => {
       const user = {
         name: 'John Doe',
-        email: 'johndoe@gmail.com',
+        email: `${email}@gmail.com`,
         password: 'johndoe',
       };
       chai.request(app)
@@ -26,7 +28,7 @@ describe('Authentication', () => {
   describe('Login to account', () => {
     it('should log a user in successfully', (done) => {
       const details = {
-        email: 'johndoe@gmail.com',
+        email: `${email}@gmail.com`,
         password: 'johndoe',
       };
       chai.request(app)
@@ -39,7 +41,7 @@ describe('Authentication', () => {
     });
     it('should not log a user in successfully when email is incorrect', (done) => {
       const details = {
-        email: `${Math.random().toString(36).substring(2, 15)}@gmail.com`,
+        email: '123samuel@gmail.com',
         password: 'johndoe',
       };
       chai.request(app)
@@ -52,7 +54,7 @@ describe('Authentication', () => {
     });
     it('should not log a user in successfully when password is incorrect', (done) => {
       const details = {
-        email: 'johndoe@gmail.com',
+        email: `${email}@gmail.com`,
         password: '12rfcas',
       };
       chai.request(app)
