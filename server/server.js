@@ -25,7 +25,7 @@ app.use('/', express.static(path.resolve(__dirname, '../frontend/')));
 app.use('/api/v1/users', requestRoutes);
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/requests', adminRoutes);
-api.use('/api/v1, (req, res) => { res.status(200).json({ message: 'Welcome to Maintenance Tracker API' });
+api.use('/api/v1', (req, res) => { res.status(200).json({ message: 'Welcome to Maintenance Tracker API' });
 app.use('/', frontendRoutes);
 app.use('/docs', swagger.serve, swagger.setup(swaggerDocument));
 
