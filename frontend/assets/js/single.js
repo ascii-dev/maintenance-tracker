@@ -48,7 +48,7 @@ const single = () => {
               <hr>                  
               ${(message.status === 1) ? `<a href="/requests/edit/${message.id}" class="btn btn-green btn-full mt-10">Edit</a>` : ''}
               <hr>
-              ${(message.status === 1) ? '<button href="#" class="btn btn-red btn-full mt-10" onclick="deleteRequest()">Delete</button>' : ''}
+              ${(message.status === 1) ? '<a class="btn btn-red btn-full mt-10" onclick="deleteRequest()">Delete</a>' : ''}
             </div>
           </div>
           <div class="requests card flex-2">

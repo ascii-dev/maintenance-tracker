@@ -54,11 +54,14 @@ const getRequest = () => {
 };
 
 const getFormData = () => {
-  const formObject = {};
   const formData = new FormData(form);
-  for (const [key, value] of formData.entries()) {
-    formObject[key] = value;
-  }
+  const formObject = {};
+  let a; // Created these two variables because
+  let b; // eslint was telling me to use array destructuring below
+  Array.from(formData.entries()).forEach((value) => {
+    [a, b] = value;
+    formObject[a] = b;
+  });
   return formObject;
 };
 

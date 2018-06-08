@@ -5,17 +5,20 @@ const token = localStorage['ascii-mt-token'];
 
 const getFormData = () => {
   const formData = new FormData(form);
-  return formData;
+  const formObject = {};
+  let a; // Created these two variables because
+  let b; // eslint was telling me to use array destructuring below
+  Array.from(formData.entries()).forEach((value) => {
+    [a, b] = value;
+    formObject[a] = b;
+  });
+  return formObject;
 };
 
 const create = () => {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const formData = getFormData();
-    const formObject = {};
-    for (const [key, value] of formData.entries()) {
-      formObject[key] = value;
-    }
+    const formObject = getFormData();
     fetch(url, {
       method: 'POST',
       body: JSON.stringify(formObject),
