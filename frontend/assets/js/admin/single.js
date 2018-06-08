@@ -45,7 +45,9 @@ const single = () => {
               <p class="mt-10"><strong>Status:</strong> <span class="in-review">${status}</span></p>
               <hr>
               <p class="request-date mt-10"><strong>Created at:</strong> ${new Date(message.created_at).toDateString()}</p>
-              <hr>                  
+              <hr>              
+              <p><strong>By: </strong> ${message.user_name}</p>               
+              <hr>
               ${(message.status === 1 || message.status === 3) ? '<a class="btn btn-green btn-full mt-10" onclick="approve(); single();">Accept</a>' : ''}
               ${(message.status === 1) ? '<a class="btn btn-red btn-full mt-10" onclick="disapprove(); single();">Reject</a>' : ''}
               ${(message.status === 2) ? '<a class="btn btn-orange btn-full mt-10" onclick="resolve(); single();">Resolve</a>' : ''}
