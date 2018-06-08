@@ -4,17 +4,20 @@ const messageBox = document.querySelector('.message');
 
 const getFormData = () => {
   const formData = new FormData(form);
-  return formData;
+  const formObject = {};
+  let a; // Created these two variables because
+  let b; // eslint was telling me to use array destructuring below
+  Array.from(formData.entries()).forEach((value) => {
+    [a, b] = value;
+    formObject[a] = b;
+  });
+  return formObject;
 };
 
 const login = () => {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const formData = getFormData();
-    const formObject = {};
-    for (const [key, value] of formData.entries()) {
-      formObject[key] = value;
-    }
+    const formObject = getFormData();
     fetch(url, {
       method: 'POST',
       body: JSON.stringify(formObject),
@@ -28,6 +31,7 @@ const login = () => {
           messageBox.classList.remove('hide');
         } else {
           localStorage.setItem('ascii-mt-token', message.token);
+          localStorage.setItem('ascii-mt-is_admin', message.is_admin);
           messageBox.classList.add('message-success');
           messageBox.classList.remove('message-failure');
           messageBox.innerHTML = 'Login successful';
