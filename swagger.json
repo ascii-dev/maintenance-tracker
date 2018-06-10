@@ -1,88 +1,540 @@
 {
-	"swagger": "2.0",
-	"info": {
-		"version": "1.0.0",
-		"title": "Maintenance Tracker API",
-		"description": "An API that that provides users with the ability to reach out to operations or repairs department regarding repair or maintenance requests and monitor the status of their request"
-	},
-	"schemes": [
-		"https"
-	],
-	"host": "ascii-mt.herokuapp.com",
-	"basePath": "/api/v1",
-	"paths": {
-		"/auth/login": {
-			"post": {
-				"summary": "Login the API to get authentication token",
-				"description": "Returns an authentication token on success.",
-				"responses": {
-					"200": {
-						"description": "Login successful, return user details and token",
-						"schema": {
-							"type": "object",
-							"items": {
-								"required": [
-									"email",
-									"password"
-								],
-								"properties": {
-									"email": {
-										"type": "string"
-									}
-								}
-							}
-						}
-					},
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Maintenance Tracker API",
+    "description": "An API that that provides users with the ability to reach out to operations or repairs department regarding repair or maintenance requests and monitor the status of their request"
+  },
+  "schemes": [
+    "https"
+  ],
+  "host": "ascii-mt.herokuapp.com",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Authenticate a user"
+    },
+    {
+      "name": "User",
+      "description": "Operations about user"
+    },
+    {
+      "name": "Admin",
+      "description": "Operations about admin"
+    }
+  ],
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login the API to get authentication token",
+        "consumes": [ "application/x-www-form-urlencoded" ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "The name for login",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "The password for login in clear text",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "description": "Returns an authentication token on success.",
+        "responses": {
+          "200": {
+            "description": "Login successful, return user details and token",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
           "400": {
             "description": "Bad Request"
           },
-					"401": {
-						"description": "Email or password incorrect"
-					},
-					"500": {
-						"description": "Server error"
-					}
-				}
-      },
-      "/auth/signup": {
-        "post": {
-          "summary": "Create an account on the API",
-          "description": "Returns an authentication token on success.",
-          "parameters": [
-            "name",
-            "username",
-            "password"
-          ],
-          "responses": {
-            "201": {
-              "description": "Signup successful, return user details and token",
-              "schema": {
-                "type": "object",
-                "items": {
-                  "required": [
-                    "email",
-                    "password"
-                  ],
-                  "properties": {
-                    "name": {
-                      "type": "string"
-                    },
-                    "email": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Bad Request"
-            },
-            "500": {
-              "description": "Server error"
-            }
+          "401": {
+            "description": "Email or password incorrect"
           }
         }
       }
-		}
-	}
+    },
+    "/auth/signup": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Create an account on the API to get authentication token",
+        "description": "Returns an authentication token on success.",
+        "consumes": [ "application/x-www-form-urlencoded" ],
+        "parameters": [
+           {
+            "name": "name",
+            "in": "formData",
+            "description": "The name of the user account to be created",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "The email for the user account to be created",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "The password for the user account to be created",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Signup successful, return user details and token",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/users/requests": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Fetch all the requests of a logged in user",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "description": "Returns an object of requests on success.",
+        "responses": {
+          "200": {
+            "description": "Operation successful",
+            "schema": {
+              "$ref": "#/definitions/Request"
+            }
+          },
+          "401": {
+            "description": "No token has been provided in the request"
+          },
+          "403": {
+            "description": "You are not allowed to view another user's request"
+          },
+          "400": {
+            "description": "Request ID must be integer"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Create a new request",
+        "consumes": [ "application/x-www-form-urlencoded" ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Request title",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "formData",
+            "description": "Request type ('maintenance', 'repair')",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "description": "Request description",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "description": "Returns an object of the created request on success.",
+        "responses": {
+          "201": {
+            "description": "Operation successful",
+            "schema": {
+              "$ref": "#/definitions/Request"
+            }
+          },
+          "400": {
+            "description": "Missing fields"
+          },
+          "401": {
+            "description": "No token has been provided in the request"
+          }
+        }
+      }
+    },
+    "/users/requests/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Fetch a single request for a user",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the request to be fetched",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "description": "Returns an object of requests on success.",
+        "responses": {
+          "200": {
+            "description": "Operation successful",
+            "schema": {
+              "$ref": "#/definitions/Request"
+            }
+          },
+          "401": {
+            "description": "No token has been provided in the request"
+          },
+          "404": {
+            "description": "The request could not be found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Delete a request",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the request to be modified",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "description": "Returns https status code 200 on success.",
+        "responses": {
+          "201": {
+            "description": "Operation successful",
+            "schema": {
+              "$ref": "#/definitions/Request"
+            }
+          },
+          "400": {
+            "description": "Missing fields"
+          },
+          "401": {
+            "description": "Not authorized"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Modify a request",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the request to be deleted",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "description": "Returns an object of the modified request on success.",
+        "responses": {
+          "201": {
+            "description": "Operation successful",
+            "schema": {
+              "$ref": "#/definitions/Request"
+            }
+          },
+          "400": {
+            "description": "Missing fields"
+          },
+          "401": {
+            "description": "Not authorized"
+          }
+        }
+      }
+    },
+    "/requests": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Fetch all requests for admin",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "description": "Returns an object of requests on success.",
+        "responses": {
+          "200": {
+            "description": "Operation successful",
+            "schema": {
+              "$ref": "#/definitions/Request"
+            }
+          },
+          "401": {
+            "description": "No token has been provided in the request"
+          }
+        }
+      }
+    },
+    "/requests/{id}": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Fetch single request for admin",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the request to be fetched",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "description": "Returns an object of requests on success.",
+        "responses": {
+          "200": {
+            "description": "Operation successful",
+            "schema": {
+              "$ref": "#/definitions/Request"
+            }
+          },
+          "401": {
+            "description": "No token has been provided in the request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Request does not exist"
+          }
+        }
+      }
+    },
+    "/requests/{id}/approve": {
+      "put": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Approve request for admin",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the request to be fetched",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "description": "Returns http status code 200 on success.",
+        "responses": {
+          "200": {
+            "description": "Operation successful",
+            "schema": {
+              "$ref": "#/definitions/Request"
+            }
+          },
+          "401": {
+            "description": "No token has been provided in the request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Request does not exist"
+          }
+        }
+      }
+    },
+    "/requests/{id}/disapprove": {
+      "put": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Disapprove request for admin",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the request to be fetched",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "description": "Returns http status code 200 on success.",
+        "responses": {
+          "200": {
+            "description": "Operation successful",
+            "schema": {
+              "$ref": "#/definitions/Request"
+            }
+          },
+          "401": {
+            "description": "No token has been provided in the request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Request does not exist"
+          }
+        }
+      }
+    },
+    "/requests/{id}/resolve": {
+      "put": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Resolve request for admin",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the request to be fetched",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "description": "Returns http status code 200 on success.",
+        "responses": {
+          "200": {
+            "description": "Operation successful",
+            "schema": {
+              "$ref": "#/definitions/Request"
+            }
+          },
+          "401": {
+            "description": "No token has been provided in the request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Request does not exist"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "Request": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    }
+  }
 }
