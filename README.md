@@ -64,10 +64,22 @@ You need to have these installed before cloning the project
 | GET /users/requests/:requestId        | Fetch a request that belongs to a logged in user  |
 | POST /users/requests                  | Create a request                                  |
 | PUT /users/requests/:requestId        | Modify a request                                  |
-| Get /requests/                        | Fetch all the requests                            |
+| GET /requests/                        | Fetch all the requests                            |
 | PUT /requests/:requestId/approve      | Approve request                                   |
 | PUT /requests/:requestId/disapprove   | Disapprove request                                |
 | PUT /requests/:requestId/resolve      | Resolve request                                   |
+
+### FrontEnd Routes
+| Route		                            | Functionality                                     |
+| ------------------------------------| ------------------------------------------------- |
+| GET /signup                     		| Register a user                                   |
+| GET /login                      		| Login a user                                      |
+| GET /dashboard                   		| Fetch all the requests of a logged in​ user        |
+| GET /requests/:requestId        		| Fetch a request that belongs to a logged in user  |
+| GET /create                  		  	| Create a request                                  |
+| GET /requests/edit/:requestId      	| Modify a request                                  |
+| GET /admin/                      		| Fetch all the requests                            |
+| GET /admin/:requestId      			    | View a single request                             |
 
 ## License
 This project is licensed under the MIT License 
@@ -83,5 +95,5 @@ This project is licensed under the MIT License
 [Google](https://google.com)
 
 ## Acces running application
-[Github Pages](https://asii-dev.github.io/maintenance-tracker/UI)<br>
-[Heroku](https://ascii-mt.herokuapp.com)
+[Heroku](https://ascii-mt.herokuapp.com)<br>
+[Docs](https://ascii-mt.herokuapp.com/docs)
