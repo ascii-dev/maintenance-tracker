@@ -80,7 +80,7 @@ class AuthController {
           message: 'User has successfully logged in',
         });
       })
-      .catch(() => { res.status(401).json({ message: 'Account does not exist' }); });
+      .catch(() => { res.status(401).json({ message: 'Email or password incorrect' }); });
     return null;
   }
 }

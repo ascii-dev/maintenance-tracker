@@ -4,7 +4,7 @@ import config from '../config/config';
 const verifyToken = (req, res, next) => {
   const token = req.headers.authorization.split(' ')[1];
   if (!token) {
-    return res.status(400).json({ message: 'No token has been provided in the request' });
+    return res.status(401).send('No token has been provided in the request');
   }
   jwt.verify(token, config.jwtSecret, (err, decoded) => {
     if (err) {
