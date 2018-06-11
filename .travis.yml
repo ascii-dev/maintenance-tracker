@@ -6,7 +6,12 @@ env:
   global:
     - CC_TEST_REPORTER_ID=8fa8fe4660513837d60514556564d5999efc9191b875fa1db221870e0c8133a3
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
+  - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres
+  - psql -h localhost -p 5432 -U postgress travis_ci_test
+  - psql -c 'CREATE TABLE requests;' -U postgres
+  - psql -c 'CREATE TABLE users;' -U postgres
+  - psql -c "INSERT INTO users (name, email, password, is_admin) VALUES ('Samuel Afolaranmi', 'sammysgame.dev@gmail.com', '$2a$08$Ok/xN7VyRkAK1sAyzJA7v.hs7YpKQomOibEwNmclyDJe8M1tL5s66', 1);" -U postgres
+  - psql -c "INSERT INTO requests (title, type, description, user_id) VALUES ('This is title', 'repair', 'This is description', 2);" -U postgres
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
