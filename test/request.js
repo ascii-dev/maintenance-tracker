@@ -36,7 +36,7 @@ describe('Requests', () => {
 
     // Test GET single request (return 404)
     it('should not get user request when request id does not exist', (done) => {
-      const id = 1000;
+      const id = 0;
       chai.request(app)
         .get(`/api/v1/users/requests/${id}`)
         .set('Authorization', userToken)
@@ -154,7 +154,6 @@ describe('Requests', () => {
   });
 
   describe('/DELETE api/v1/users/requests/:id', () => {
-    // Test create new request (return 201)
     it('should delete a request when the id exists', (done) => {
       const id = 1;
       chai.request(app)
@@ -166,7 +165,6 @@ describe('Requests', () => {
         });
     });
 
-    // Test create new request (return 400)
     it('should not delete a request when the id does not exist', (done) => {
       const id = 0;
       chai.request(app)
@@ -174,6 +172,17 @@ describe('Requests', () => {
         .set('Authorization', userToken)
         .end((err, res) => {
           res.should.have.status(404);
+          done();
+        });
+    });
+
+    it('should not delete a request when the id is not a number', (done) => {
+      const id = 'name';
+      chai.request(app)
+        .delete(`/api/v1/users/requests/${id}`)
+        .set('Authorization', userToken)
+        .end((err, res) => {
+          res.should.have.status(400);
           done();
         });
     });
