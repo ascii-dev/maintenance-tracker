@@ -6,7 +6,12 @@ env:
   global:
     - CC_TEST_REPORTER_ID=8fa8fe4660513837d60514556564d5999efc9191b875fa1db221870e0c8133a3
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
+  - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres
+  - psql -c 'CREATE TABLE users (id serial PRIMARY KEY, name varchar(100) not null, email varchar(100) not null, is_admin int DEFAULT 0, password varchar(250) not null);' -U postgres -d travis_ci_test
+  - psql -c 'CREATE TABLE requests (id serial PRIMARY KEY, title varchar(250) not null, type varchar(250) not null, description text not null, user_id int not null, status_id int DEFAULT 1, created_at TIMESTAMPTZ DEFAULT Now());' -U postgres -d travis_ci_test
+  - psql -c "INSERT INTO users (name, email, password, is_admin) VALUES ('Samuel Afolaranmi', 'sammysgame.dev@gmail.com', '$2a$08$Ok/xN7VyRkAK1sAyzJA7v.hs7YpKQomOibEwNmclyDJe8M1tL5s66', 1);" -U postgres -d travis_ci_test
+  - psql -c "INSERT INTO users (name, email, password, is_admin) VALUES ('New User', 'user@gmail.com', '$2a$08$Ok/xN7VyRkAK1sAyzJA7v.hs7YpKQomOibEwNmclyDJe8M1tL5s66', 0);" -U postgres -d travis_ci_test
+  - psql -c "INSERT INTO requests (title, type, description, user_id) VALUES ('This is title', 'repair', 'This is description', 2);" -U postgres -d travis_ci_test
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
