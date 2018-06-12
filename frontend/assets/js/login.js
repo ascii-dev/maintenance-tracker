@@ -1,6 +1,7 @@
 const form = document.getElementById('signup-form');
 const url = '/api/v1/auth/login';
 const messageBox = document.querySelector('.message');
+const loginBtn = document.getElementById('loginBtn');
 
 const getFormData = () => {
   const formData = new FormData(form);
@@ -17,6 +18,8 @@ const getFormData = () => {
 const login = () => {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
+    loginBtn.disabled = true;
+    loginBtn.innerHTML = 'Signing you in...';
     const formObject = getFormData();
     fetch(url, {
       method: 'POST',
@@ -29,6 +32,8 @@ const login = () => {
           messageBox.classList.remove('message-success');
           messageBox.innerHTML = message.message;
           messageBox.classList.remove('hide');
+          loginBtn.disabled = false;
+          loginBtn.innerHTML = 'Login';
         } else {
           localStorage.setItem('ascii-mt-token', message.token);
           localStorage.setItem('ascii-mt-is_admin', message.is_admin);
@@ -36,11 +41,13 @@ const login = () => {
           messageBox.classList.remove('message-failure');
           messageBox.innerHTML = 'Login successful';
           messageBox.classList.remove('hide');
-          if (message.is_admin === 1) {
-            window.location.href = '/admin';
-          } else {
-            window.location.href = '/dashboard';
-          }
+          window.setTimeout(() => {
+            if (message.is_admin === 1) {
+              window.location.href = '/admin';
+            } else {
+              window.location.href = '/dashboard';
+            }
+          }, 1000);
         }
       });
     })

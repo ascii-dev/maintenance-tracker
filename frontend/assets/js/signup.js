@@ -1,6 +1,7 @@
 const form = document.getElementById('signup-form');
 const url = '/api/v1/auth/signup';
 const messageBox = document.querySelector('.message');
+const signupBtn = document.getElementById('signupBtn');
 
 const getFormData = () => {
   const formData = new FormData(form);
@@ -17,6 +18,8 @@ const getFormData = () => {
 const signup = () => {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
+    signupBtn.disabled = true;
+    signupBtn.innerHTML = 'Creating your account...';
     const formObject = getFormData();
     const { password, confirmPassword } = formObject;
     if (password !== confirmPassword) {
@@ -24,6 +27,7 @@ const signup = () => {
       messageBox.classList.remove('message-success');
       messageBox.innerHTML = 'Password and Confirm password fields are not the same';
       messageBox.classList.remove('hide');
+      signupBtn.disabled = false;
       return null;
     }
     fetch(url, {
@@ -37,6 +41,8 @@ const signup = () => {
           messageBox.classList.remove('message-success');
           messageBox.innerHTML = message.message;
           messageBox.classList.remove('hide');
+          signupBtn.disabled = false;
+          signupBtn.innerHTML = 'Signup';
           return null;
         }
         localStorage.setItem('ascii-mt-token', message.token);
@@ -45,7 +51,7 @@ const signup = () => {
         messageBox.classList.remove('message-failure');
         messageBox.innerHTML = 'Account created successfully';
         messageBox.classList.remove('hide');
-        window.location.href = '/dashboard';
+        window.setTimeout(() => { window.location.href = '/dashboard'; }, 1000);
         return null;
       });
     })
