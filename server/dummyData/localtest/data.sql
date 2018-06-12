@@ -1,0 +1,3 @@
+INSERT INTO users (name, email, password, is_admin) VALUES ('Samuel Afolaranmi', 'sammysgame.dev@gmail.com', '$2a$08$Ok/xN7VyRkAK1sAyzJA7v.hs7YpKQomOibEwNmclyDJe8M1tL5s66', 1);
+INSERT INTO users (name, email, password, is_admin) VALUES ('New User', 'user@gmail.com', '$2a$08$Ok/xN7VyRkAK1sAyzJA7v.hs7YpKQomOibEwNmclyDJe8M1tL5s66', 0);
+INSERT INTO requests (title, type, description, user_id) VALUES ('This is title', 'repair', 'This is description', 2);
