@@ -53,7 +53,7 @@ You need to have these installed before cloning the project
   ```npm run dev```
 
 ### How To Test
-  ```npm test```
+  ```npm run local:test```
 
 ### Working Endpoints
 | Endpoint                              | Functionality                                     |

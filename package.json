@@ -6,6 +6,7 @@
   "scripts": {
     "prestart": "babel server -d dist --presets=env --presets=env",
     "test": "cross-env NODE_ENV=test nyc mocha --require babel-register --timeout 60000 ./test/*.js --exit",
+    "local:test": "cross-env NODE_ENV=test psql -U postgres -d m_tracker_test -f ./server/dummyData/localtest/data.sql && npm test && psql -U postgres -d m_tracker_test -f ./server/dummyData/localtest/dump.sql",
     "start": "cross-env NODE_ENV=production node ./dist/server.js",
     "dev": "nodemon --exec babel-node --presets babel-preset-env ./server/server.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"

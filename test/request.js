@@ -153,29 +153,29 @@ describe('Requests', () => {
     });
   });
 
-  // describe('/DELETE api/v1/users/requests/:id', () => {
-  //   // Test create new request (return 201)
-  //   it('should delete a request when the id exists', (done) => {
-  //     const id = 3;
-  //     chai.request(app)
-  //       .delete(`/api/v1/users/requests/${id}`)
-  //       .set('x-access-token', userToken)
-  //       .end((err, res) => {
-  //         res.should.have.status(200);
-  //         done();
-  //       });
-  //   });
+  describe('/DELETE api/v1/users/requests/:id', () => {
+    // Test create new request (return 201)
+    it('should delete a request when the id exists', (done) => {
+      const id = 1;
+      chai.request(app)
+        .delete(`/api/v1/users/requests/${id}`)
+        .set('Authorization', userToken)
+        .end((err, res) => {
+          res.should.have.status(200);
+          done();
+        });
+    });
 
-  //   // Test create new request (return 400)
-  //   it('should not delete a request when the id does not exist', (done) => {
-  //     const requestid = 0;
-  //     chai.request(app)
-  //       .delete(`/api/v1/users/requests/${requestid}`)
-  //       .set('x-access-token', userToken)
-  //       .end((err, res) => {
-  //         res.should.have.status(404);
-  //         done();
-  //       });
-  //   });
-  // });
+    // Test create new request (return 400)
+    it('should not delete a request when the id does not exist', (done) => {
+      const id = 0;
+      chai.request(app)
+        .delete(`/api/v1/users/requests/${id}`)
+        .set('Authorization', userToken)
+        .end((err, res) => {
+          res.should.have.status(404);
+          done();
+        });
+    });
+  });
 });
