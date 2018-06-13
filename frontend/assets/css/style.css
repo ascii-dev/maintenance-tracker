@@ -253,7 +253,7 @@ padding: 25px;
 }
 
 .authBg {
-background: url('../images/bg.jpg') center no-repeat;
+  background: url('../images/bg.jpg') center no-repeat;
 }
 
 .message {
