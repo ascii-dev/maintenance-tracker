@@ -3,6 +3,7 @@ const url = '/api/v1/auth/login';
 const messageBox = document.querySelector('.message');
 const loginBtn = document.getElementById('loginBtn');
 
+// Get data from the form and convert it into an object for signup
 const getFormData = () => {
   const formData = new FormData(form);
   const formObject = {};

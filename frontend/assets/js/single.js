@@ -3,6 +3,7 @@ const requestDiv = document.querySelector('.request-single');
 const messageBox = document.querySelector('.message');
 const token = localStorage['ascii-mt-token'];
 
+// Get single request from endpoint
 const single = () => {
   const pageUrlArray = document.URL.split('/');
   const pageUrl = pageUrlArray[pageUrlArray.length - 1];
@@ -15,11 +16,13 @@ const single = () => {
     credentials: 'same-origin',
   }).then((response) => {
     response.json().then((message) => {
+      // If the get request was not successful, show the error from the endpoint
       if (response.status !== 200) {
         messageBox.classList.add('message-failure');
         messageBox.innerHTML = message.message;
         messageBox.classList.remove('hide');
       } else {
+        // If the get request was successful, show the request
         let status;
         switch (message.status) {
           case 1:
