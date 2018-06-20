@@ -53,6 +53,7 @@ const getRequest = () => {
   return null;
 };
 
+// Get data from the form and convert it into an object for signup
 const getFormData = () => {
   const formData = new FormData(form);
   const formObject = {};

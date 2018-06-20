@@ -4,6 +4,7 @@ const messageBox = document.querySelector('.message');
 const token = localStorage['ascii-mt-token'];
 const createBtn = document.getElementById('createBtn');
 
+// Get data from the form and convert it into an object for signup
 const getFormData = () => {
   const formData = new FormData(form);
   const formObject = {};
