@@ -4,10 +4,12 @@ import VerifyToken from '../middlewares/VerifyToken';
 
 const requestRoutes = Router();
 
-requestRoutes.get('/requests', VerifyToken, RequestController.getAllRequests);
-requestRoutes.post('/requests', VerifyToken, RequestController.createRequest);
-requestRoutes.get('/requests/:id', VerifyToken, RequestController.getSingleRequest);
-requestRoutes.put('/requests/:id', VerifyToken, RequestController.updateRequest);
-requestRoutes.delete('/requests/:id', VerifyToken, RequestController.deleteRequest);
+requestRoutes.use(VerifyToken);
+
+requestRoutes.get('/requests', RequestController.getAllRequests);
+requestRoutes.post('/requests', RequestController.createRequest);
+requestRoutes.get('/requests/:id', RequestController.getSingleRequest);
+requestRoutes.put('/requests/:id', RequestController.updateRequest);
+requestRoutes.delete('/requests/:id', RequestController.deleteRequest);
 
 export default requestRoutes;

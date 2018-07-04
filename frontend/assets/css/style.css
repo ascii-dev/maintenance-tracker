@@ -68,6 +68,9 @@ font-weight: 400;
 font-size: 34px;
 }
 
+.wrap {
+  overflow-wrap: break-word;
+}
 
 .main-nav ul {
   list-style-type: none;
