@@ -2,6 +2,8 @@ import path from 'path';
 import express from 'express';
 import bodyParser from 'body-parser';
 import swagger from 'swagger-ui-express';
+import cors from 'cors';
+
 import adminRoutes from './routes/admin';
 import requestRoutes from './routes/request';
 import authRoutes from './routes/auth';
@@ -17,6 +19,7 @@ const port = process.env.PORT || 8080;
 // Configure app to use bodyParser so we can get data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 
 // Static files
 app.use('/', express.static(path.resolve(__dirname, '../frontend/')));
