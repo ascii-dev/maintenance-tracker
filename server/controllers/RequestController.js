@@ -77,9 +77,7 @@ class RequestController {
           message: 'Your request has been created successfully',
         });
       })
-      .catch(() => {
-        res.status(500).json({ message: 'An error occured while processing this request' });
-      });
+      .catch(() => res.status(500).json({ message: 'An error occured while processing this request' }));
     return null;
   }
 

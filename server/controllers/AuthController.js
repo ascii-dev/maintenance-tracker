@@ -20,16 +20,25 @@ class AuthController {
     }
     const email = req.body.email.trim();
     const name = req.body.name.trim();
+    const password = req.body.password.trim();
+    const confirmPassword = req.body.confirmPassword.trim();
     const hashedPassword = bcrypt.hashSync(req.body.password.trim(), 8);
     pool.query(`SELECT email FROM users WHERE email = '${email}'`)
       .then((response) => {
         if (response.rowCount > 0) {
           return res.status(403).json({ message: 'Account already exists' });
         }
+        if (password !== confirmPassword) {
+          return res.status(403).json({ message: 'Password and confirmation does not match' });
+        }
         pool.query(`INSERT INTO users (name, email, password) values ('${name}', '${email}', '${hashedPassword}') RETURNING *`)
           .then((result) => {
             const token = jwt.sign(
-              { id: result.rows[0].id },
+              {
+                id: result.rows[0].id,
+                is_admin: result.rows[0].is_admin,
+                name: result.rows[0].name,
+              },
               config.jwtSecret,
               { expiresIn: 86400 },
             );
@@ -67,7 +76,11 @@ class AuthController {
         }
 
         const token = jwt.sign(
-          { id: result.rows[0].id },
+          {
+            id: result.rows[0].id,
+            is_admin: result.rows[0].is_admin,
+            name: result.rows[0].name,
+          },
           config.jwtSecret,
           { expiresIn: 86400 },
         );
